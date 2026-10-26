@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>{{page.title}}</title>
+  <meta name="description" content="{{page.description}}">
+  <link rel="canonical" href="{{page.canonical}}">
+  <meta name="theme-color" content="#f5f0e6">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="{{site.name}}">
+  <meta property="og:title" content="{{page.title}}">
+  <meta property="og:description" content="{{page.description}}">
+  <meta property="og:url" content="{{page.canonical}}">
+  <meta property="og:image" content="{{site.url}}/assets/img/og.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+  <script>
+    /* Before first paint: show the preloader on the first visit of a session,
+       or the page curtain when arriving from another page of this site. */
+    (function (d) {
+      var h = d.documentElement; h.classList.add('js');
+      try {
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+        var s = window.sessionStorage;
+        if (!s.getItem('lif-seen')) h.classList.add('is-loading');
+        else if (s.getItem('lif-nav')) h.classList.add('is-entering');
+        /* Safety net: never leave the page covered if a script fails. */
+        setTimeout(function () { if (!h.classList.contains('motion-ready')) h.classList.remove('is-loading', 'is-entering'); }, 6000);
+      } catch (e) {}
+    })(document);
+  </script>
+  <style>
+    html.is-entering, html.is-loading { background: #0b3a3b; }
+    .curtain { position: fixed; inset: 0; z-index: 790; background: #0b3a3b; transform: translateY(101%); }
+    html.is-entering .curtain { transform: none; }
+    .preloader { position: fixed; inset: 0; z-index: 800; background: #f5f0e6; display: none; }
+    html.is-loading .preloader { display: grid; place-items: center; }
+  </style>
+  <link rel="preload" href="assets/fonts/inter-tight-normal-300-700.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/instrument-serif-italic-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/css/fonts.css">
+  <link rel="stylesheet" href="assets/css/main.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "{{site.name}}",
+    "url": "{{site.url}}",
+    "email": "{{site.email}}",
+    "image": "{{site.url}}/assets/img/og.jpg",
+    "description": "Career transition coaching for tech professionals: clarity, confidence and purpose-driven work.",
+    "areaServed": ["Vancouver", "British Columbia", "Canada", "Worldwide (virtual)"],
+    "address": { "@type": "PostalAddress", "addressLocality": "Vancouver", "addressRegion": "BC", "addressCountry": "CA" },
+    "founder": {
+      "@type": "Person",
+      "name": "{{site.owner}}",
+      "jobTitle": "Career transition coach",
+      "hasCredential": ["ICF Professional Certified Coach (PCC)", "Certified Professional Co-Active Coach (CPCC)"],
+      "sameAs": ["{{site.links.linkedin}}", "{{site.links.instagram}}", "{{site.links.facebook}}"]
+    }
+  }
+  </script>
+</head>
+<body class="{{page.bodyClass}}" data-page="{{page.slug}}" id="top">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <div class="preloader" aria-hidden="true">
+    <div class="preloader__top"><span class="label">Live in Flow Coaching</span><span class="label">Clarity &middot; Confidence &middot; Courage</span></div>
+    <div class="preloader__inner">
+      <div class="preloader__sea">
+        <svg class="preloader__wave" viewBox="0 0 400 40" preserveAspectRatio="none"><path pathLength="1" d="M0 26c33-14 67 14 100 0s67-14 100 0 67 14 100 0 67-14 100 0"/></svg>
+        <span class="preloader__boat">{{> logo-mark}}</span>
+      </div>
+      <p class="preloader__name"><span>Live in</span> <em>Flow</em></p>
+    </div>
+    <div class="preloader__bottom"><span class="label">Maria Angoso &middot; Career coach</span><span class="label preloader__count"><span data-count>0</span>%</span></div>
+  </div>
+  <div class="curtain" aria-hidden="true"><p class="curtain__title">{{page.curtain}}</p></div>
+  <div class="scroll-progress" aria-hidden="true"></div>
+  <div class="cursor" aria-hidden="true"><span class="cursor__label"></span></div>
+
+  {{> header}}
+
+  <main id="main">
+{{page.content}}
+  </main>
+
+  {{> footer}}
+
+  <a class="sticky-cta" href="{{site.links.bookCall}}" target="_blank" rel="noopener">Book a free 20-min call {{> arrow}}</a>
+
+  <script src="assets/vendor/gsap.min.js" defer></script>
+  <script src="assets/vendor/ScrollTrigger.min.js" defer></script>
+  <script src="assets/js/config.js" defer></script>
+  <script src="assets/js/site.js" defer></script>
+  <script src="assets/js/motion.js" defer></script>
+</body>
+</html>

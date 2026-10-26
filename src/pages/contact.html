@@ -1,0 +1,61 @@
+---
+title: Book a Free Call | Contact Maria Angoso | Live in Flow Coaching
+description: Book a free 20-minute virtual coffee with career transition coach Maria Angoso, or send a message about one-on-one coaching, workshops or speaking.
+nav: contact
+curtain: Let's <em>talk</em>
+bodyClass: page-contact
+---
+<section class="page-hero">
+  <div class="container">
+    <p class="label label--dot">Contact</p>
+    <h1 class="h-display page-hero__title" data-split>Let's start a <em>conversation.</em></h1>
+    <div class="page-hero__foot">
+      <p class="lede reveal">Because we're all different, the best way to know if we're a good fit is to connect. Book a 20-minute virtual coffee, or drop me a note below.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section section--flush-top">
+  <div class="container contact">
+    <a class="book-card reveal" href="{{site.links.bookCall}}" target="_blank" rel="noopener" data-theme="dark" data-cursor="Book">
+      <span class="book-card__img" data-parallax>{{img laptop | Maria smiling on a video call | (min-width: 900px) 45vw, 100vw | | eager | 60% 40%}}</span>
+      <span class="book-card__shade" aria-hidden="true"></span>
+      <span class="book-card__top"><span class="label label--dot">Free &middot; 20 minutes &middot; Zoom</span><span class="circle-btn circle-btn--light">{{> ne}}</span></span>
+      <span class="book-card__body">
+        <span class="book-card__title">Book a virtual <em>coffee.</em></span>
+        <span class="small">Pick a time that suits you. We'll talk about where you are, where you want to be, and whether coaching is the right next step.</span>
+        <span class="btn btn--sun">Choose a time <span class="btn__icon">{{> arrow}}</span></span>
+      </span>
+    </a>
+
+    <form class="contact-form reveal" data-form="contact" novalidate>
+      <p class="label">Or send a message</p>
+      <div class="contact-form__grid">
+        <label class="field"><span class="field__label">Name</span><input class="input" type="text" name="name" autocomplete="name" required></label>
+        <label class="field"><span class="field__label">Email</span><input class="input" type="email" name="email" autocomplete="email" required></label>
+      </div>
+      <fieldset class="field choice">
+        <legend class="field__label">I'm interested in</legend>
+        <div class="choice__row">
+          <label><input type="radio" name="topic" value="Career transition coaching" checked><span>Career transition</span></label>
+          <label><input type="radio" name="topic" value="Executive presence coaching"><span>Executive presence</span></label>
+          <label><input type="radio" name="topic" value="Entrepreneur coaching"><span>Becoming an entrepreneur</span></label>
+          <label><input type="radio" name="topic" value="Team workshop or keynote"><span>Workshop or keynote</span></label>
+        </div>
+      </fieldset>
+      <label class="field"><span class="field__label">Where are you now, and where would you like to be?</span><textarea class="input" name="message" rows="5" required></textarea></label>
+      <button class="btn btn--sea" type="submit">Send message <span class="btn__icon">{{> arrow}}</span></button>
+      <p class="form-msg" role="status" aria-live="polite"></p>
+    </form>
+  </div>
+</section>
+
+<section class="section section--flush-top">
+  <div class="container">
+    <div class="contact-alt">
+      <div class="contact-alt__item reveal"><p class="label">Email</p><a class="h-md" href="mailto:{{site.email}}">{{site.email}}</a></div>
+      <div class="contact-alt__item reveal"><p class="label">Based in</p><p class="h-md">Vancouver, <em>BC</em></p></div>
+      <div class="contact-alt__item reveal"><p class="label">Follow</p><p class="h-md"><a href="{{site.links.linkedin}}" target="_blank" rel="noopener">LinkedIn</a> &middot; <a href="{{site.links.instagram}}" target="_blank" rel="noopener">Instagram</a></p></div>
+    </div>
+  </div>
+</section>

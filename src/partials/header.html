@@ -1,0 +1,35 @@
+<header class="site-header">
+  <div class="site-header__inner">
+    {{> logo}}
+    <nav class="nav" aria-label="Main">
+      <a class="nav__link" href="about.html"{{nav:about}}>About</a>
+      <a class="nav__link" href="coaching.html"{{nav:coaching}}>Coaching</a>
+      <a class="nav__link" href="workshops.html"{{nav:workshops}}>Workshops</a>
+      <a class="nav__link" href="stories.html"{{nav:stories}}>Client wins</a>
+      <a class="nav__link" href="roadmap.html"{{nav:roadmap}}>Free roadmap</a>
+    </nav>
+    <div class="site-header__end">
+      <a class="btn btn--sea btn--sm site-header__cta" href="contact.html" data-cursor="Let's talk">Book a call</a>
+      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="menu"><span class="menu-btn__label">Menu</span><span class="menu-btn__icon" aria-hidden="true"><i></i><i></i></span></button>
+    </div>
+  </div>
+</header>
+
+<div class="menu" id="menu" hidden>
+  <div class="menu__inner">
+    <p class="label menu__label">(Menu)</p>
+    <nav class="menu__nav" aria-label="Mobile">
+      <a href="index.html"{{nav:home}}><span class="menu__num">01</span><span>Home</span></a>
+      <a href="about.html"{{nav:about}}><span class="menu__num">02</span><span>About <em>Maria</em></span></a>
+      <a href="coaching.html"{{nav:coaching}}><span class="menu__num">03</span><span>Coaching</span></a>
+      <a href="workshops.html"{{nav:workshops}}><span class="menu__num">04</span><span>Workshops</span></a>
+      <a href="stories.html"{{nav:stories}}><span class="menu__num">05</span><span>Client <em>wins</em></span></a>
+      <a href="roadmap.html"{{nav:roadmap}}><span class="menu__num">06</span><span>Free roadmap</span></a>
+      <a href="contact.html"{{nav:contact}}><span class="menu__num">07</span><span>Contact</span></a>
+    </nav>
+    <div class="menu__foot">
+      <a class="btn btn--sun" href="{{site.links.bookCall}}" target="_blank" rel="noopener">Book a free 20-min call {{> arrow}}</a>
+      <a class="menu__mail" href="mailto:{{site.email}}">{{site.email}}</a>
+    </div>
+  </div>
+</div>
