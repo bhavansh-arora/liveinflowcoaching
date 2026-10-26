@@ -921,9 +921,17 @@ textarea.input { resize: vertical; min-height: 140px; line-height: 1.5; }
 /* ---------- Sound familiar? ---------- */
 .familiar__grid { display: grid; gap: clamp(36px, 5vw, 80px); }
 .familiar__side { display: grid; gap: 24px; justify-items: start; align-content: start; }
+.familiar__card { display: none; }
+@media (min-width: 900px) {
+  .familiar__card { display: flex; align-items: center; gap: 16px; width: 100%; max-width: 420px; margin-top: 12px; padding: 12px 18px 12px 12px; border-radius: 22px; background: var(--paper-2); border: 1px solid rgba(255, 255, 255, 0.7); box-shadow: var(--shadow); }
+  .familiar__card .media { width: 92px; height: 92px; flex: none; border-radius: 16px; }
+  .familiar__card .media img { width: 100%; height: 100%; object-fit: cover; }
+  .familiar__card p { font-size: 0.98rem; line-height: 1.4; color: var(--ink-2); }
+  .familiar__card strong { display: block; font-size: 1.6rem; font-weight: 500; letter-spacing: -0.04em; color: var(--ink); line-height: 1.1; }
+}
 @media (min-width: 900px) {
   .familiar__grid { grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr); }
-  .familiar__side { position: sticky; top: 130px; }
+  .familiar__side { position: sticky; top: 120px; align-self: start; }
 }
 .feels { margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--line); }
 .feel { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 6px 20px; padding: clamp(22px, 2.6vw, 34px) 0; border-bottom: 1px solid var(--line); }
@@ -1046,7 +1054,7 @@ textarea.input { resize: vertical; min-height: 140px; line-height: 1.5; }
 /* ---------- Journey (about): horizontal chapters ---------- */
 .journey-wrap { padding-inline: var(--frame); }
 .journey { background: var(--sea-deep); color: var(--on-dark); border-radius: var(--r-xl); overflow: hidden; display: flex; flex-direction: column; justify-content: center; padding-block: clamp(72px, 9vw, 120px); }
-@media (min-width: 900px) { .journey { min-height: calc(100svh - var(--frame) * 2); } }
+@media (min-width: 900px) { .journey { padding-block: clamp(64px, 7vw, 100px); } .chapter { min-height: clamp(480px, 58svh, 560px); } }
 .journey .head-top { border-color: var(--line-dark); }
 .journey .head-top .label { color: rgba(245, 240, 230, 0.66); }
 .chapter {
