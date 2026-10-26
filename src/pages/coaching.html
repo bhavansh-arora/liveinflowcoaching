@@ -5,30 +5,55 @@ nav: coaching
 curtain: 1:1 <em>Coaching</em>
 bodyClass: page-coaching
 ---
-<section class="page-hero">
-  <div class="container">
-    <div class="page-hero__top">
-      <div class="page-hero__head">
-      <p class="label label--dot">One-on-one coaching</p>
-      <h1 class="h-display page-hero__title" data-split>Clarity, confidence <em>&amp; courage.</em></h1>
+<section class="phero" data-theme="dark">
+  <div class="phero__frame">
+    <div class="phero__media"><div class="phero__img">{{img laptop | | 100vw | | eager | 62% 40%}}</div></div>
+    <div class="phero__shade" aria-hidden="true"></div>
+    <div class="phero__top"><span class="label">1:1 coaching</span><span class="label">On Zoom &middot; Worldwide</span></div>
+    <aside class="phero__card">
+      <span class="label label--dot">Start here</span>
+      <span class="phero__card-big">20 <em>min</em></span>
+      <span class="small">A free virtual coffee to see if we fit.</span>
+    </aside>
+    <div class="phero__content">
+      <p class="label label--dot phero__eyebrow">One-on-one coaching</p>
+      <h1 class="h-display phero__title"><span class="line"><span>Clarity, confidence</span></span><span class="line"><span><em>&amp; courage.</em></span></span></h1>
+      <div class="phero__foot">
+        <p class="phero__lede">Whether you're craving the motivation to do something meaningful, or you've taken the leap and need guidance to grow, one-on-one coaching helps you reach your personal and professional goals.</p>
+        <div class="row phero__ctas"><a class="btn btn--sun magnetic" href="{{site.links.bookCall}}" target="_blank" rel="noopener" data-cursor="Book">Book a free call <span class="btn__icon">{{> arrow}}</span></a><a class="btn btn--glass" href="#paths">Explore the three paths</a></div>
       </div>
-      <figure class="hero-aside reveal">
-        <div class="hero-aside__img media">{{img seated | Maria sitting on a stone step in a yellow blazer | (min-width: 900px) 22vw, 60vw | | eager | 50% 35%}}</div>
-        <figcaption><span class="label label--dot">1:1 on Zoom</span><span class="small">Coaching worldwide from Vancouver.</span></figcaption>
-      </figure>
     </div>
-    <div class="page-hero__foot">
-      <p class="lede reveal">Whether you're craving the motivation to do something meaningful, or you've taken the leap and need guidance to grow, one-on-one coaching helps you reach your personal and professional goals.</p>
-      <nav class="jump reveal" aria-label="Coaching options">
-        <a href="#transition"><span>01</span>Career transition</a>
-        <a href="#presence"><span>02</span>Executive presence</a>
-        <a href="#entrepreneur"><span>03</span>Become an entrepreneur</a>
-      </nav>
-    </div>
+    <a class="phero__scroll" href="#next" aria-label="Scroll to content"><span>Scroll</span><i></i></a>
   </div>
+</section>
+<span id="next"></span>
+
+<section class="section intro">
   <div class="container">
-    <div class="wide-media media">
-      <div class="media__inner" data-parallax>{{img lane | Maria sitting on a doorstep in a quiet whitewashed street | 100vw | | eager | 50% 45%}}</div>
+    <div class="head-top"><span class="label">(01) &mdash; The approach</span><span class="label">Thinking partner &middot; Cheerleader &middot; Accountability</span></div>
+    <p class="statement" data-statement>Deep yet light-hearted coaching for ambitious people <span class="inline-img">{{img pill-laptop | | 120px}}</span> who are ready to stop <em>grinding</em> and start <em>growing</em> <span class="inline-img">{{img pill-map | | 120px}}</span>, one brave step at a time.</p>
+  </div>
+</section>
+
+<section class="section section--flush-top" id="paths">
+  <div class="container">
+    <div class="head-top"><span class="label">(02) &mdash; Three paths</span><span class="label">Choose where to start</span></div>
+    <div class="paths">
+      <a class="tile tile--media reveal" href="#transition" data-cursor="Explore">
+        <span class="tile__img" data-parallax>{{img door | Maria laughing against a green door | (min-width: 760px) 33vw, 100vw | | | 55% 45%}}</span>
+        <span class="tile__overlay"><span class="label">01 &mdash; Career transition</span><span class="tile__title">Clarify your next move, <em>then make it.</em></span><span class="tile__desc">For people craving a change but unsure what or how.</span></span>
+        <span class="circle-btn">{{> ne}}</span>
+      </a>
+      <a class="tile tile--media reveal" href="#presence" data-cursor="Explore">
+        <span class="tile__img" data-parallax>{{img cafe | Maria smiling at a cafe table | (min-width: 760px) 33vw, 100vw | | | 50% 40%}}</span>
+        <span class="tile__overlay"><span class="label">02 &mdash; Executive presence</span><span class="tile__title">Step up, <em>stand out.</em></span><span class="tile__desc">For new and seasoned leaders ready for more influence.</span></span>
+        <span class="circle-btn">{{> ne}}</span>
+      </a>
+      <a class="tile tile--media reveal" href="#entrepreneur" data-cursor="Explore">
+        <span class="tile__img" data-parallax>{{img lane | Maria sitting on a doorstep in a quiet street | (min-width: 760px) 33vw, 100vw | | | 50% 45%}}</span>
+        <span class="tile__overlay"><span class="label">03 &mdash; Become an entrepreneur</span><span class="tile__title">Your business, <em>your way.</em></span><span class="tile__desc">For founders building something of their own.</span></span>
+        <span class="circle-btn">{{> ne}}</span>
+      </a>
     </div>
   </div>
 </section>
@@ -38,7 +63,7 @@ bodyClass: page-coaching
     <div class="option__side">
       <p class="option__num">01</p>
       <p class="label">Option one</p>
-      <div class="option__img media">{{img door | Maria playfully posing against a green door | (min-width: 900px) 30vw, 100vw | | | 55% 40%}}</div>
+      <div class="option__img media">{{img wall | Maria relaxed against a pink wall | (min-width: 900px) 30vw, 100vw | | | 50% 25%}}</div>
     </div>
     <div class="option__main">
       <h2 class="h-xl" data-split>Career <em>transitioning</em></h2>
@@ -69,7 +94,7 @@ bodyClass: page-coaching
     <div class="option__side">
       <p class="option__num">02</p>
       <p class="label">Option two</p>
-      <div class="option__img media">{{img cafe | Maria smiling at a cafe table | (min-width: 900px) 30vw, 100vw | | | 50% 35%}}</div>
+      <div class="option__img media">{{img seated | Maria sitting on a stone step in a yellow blazer | (min-width: 900px) 30vw, 100vw | | | 50% 35%}}</div>
     </div>
     <div class="option__main">
       <h2 class="h-xl" data-split>Executive <em>presence</em></h2>
@@ -117,9 +142,11 @@ bodyClass: page-coaching
   </div>
 </section>
 
-<section class="section section--flush-top">
+{{> words}}
+
+<section class="section">
   <div class="container">
-    <div class="head-top"><span class="label">(04) &mdash; Questions</span><span class="label">Before we begin</span></div>
+    <div class="head-top"><span class="label">(03) &mdash; Questions</span><span class="label">Before we begin</span></div>
     <div class="faq-wrap">
       <h2 class="h-xl" data-split>Good to <em>know.</em></h2>
       <div class="faq">

@@ -5,43 +5,57 @@ nav: about
 curtain: About <em>Maria</em>
 bodyClass: page-about
 ---
-<section class="page-hero page-hero--split">
-  <div class="container page-hero__grid">
-    <div class="page-hero__text">
-      <p class="label label--dot">About &middot; Maria Angoso, CPCC, PCC</p>
-      <h1 class="h-display" data-split>Hola, I'm <em>Maria.</em></h1>
-      <p class="lede reveal">I help people navigate change, uncertainty and complexity by raising self-awareness, moving past limiting beliefs and tapping into their unique potential, so they gain the clarity and confidence to take their next step.</p>
-      <div class="row reveal">
-        <a class="btn btn--sea magnetic" href="{{site.links.bookCall}}" target="_blank" rel="noopener" data-cursor="Book">Let's start a conversation <span class="btn__icon">{{> arrow}}</span></a>
-        <a class="btn btn--ghost" href="{{site.links.bio}}" target="_blank" rel="noopener">Download my bio</a>
+<section class="phero" data-theme="dark">
+  <div class="phero__frame">
+    <div class="phero__media"><div class="phero__img">{{img street | | 100vw | | eager | 55% 32%}}</div></div>
+    <div class="phero__shade" aria-hidden="true"></div>
+    <div class="phero__top"><span class="label">About</span><span class="label">Maria Angoso &middot; CPCC &middot; PCC</span></div>
+    <aside class="phero__card">
+      <span class="label label--dot">Known as</span>
+      <span class="phero__card-big">The Queen of <em>Transition</em></span>
+      <span class="small">Because I have lived the leap myself.</span>
+    </aside>
+    <div class="phero__content">
+      <p class="label label--dot phero__eyebrow">Spanish-Canadian coach &middot; Vancouver</p>
+      <h1 class="h-display phero__title"><span class="line"><span>Hola, I'm</span></span><span class="line"><span><em>Maria.</em></span></span></h1>
+      <div class="phero__foot">
+        <p class="phero__lede">I help people navigate change, uncertainty and complexity, move past limiting beliefs and tap into their unique potential, so they gain the clarity and confidence to take their next step.</p>
+        <div class="row phero__ctas"><a class="btn btn--sun magnetic" href="{{site.links.bookCall}}" target="_blank" rel="noopener" data-cursor="Book">Let's start a conversation <span class="btn__icon">{{> arrow}}</span></a><a class="btn btn--glass" href="{{site.links.bio}}" target="_blank" rel="noopener">Download my bio</a></div>
       </div>
     </div>
-    <div class="page-hero__media media">
-      <div class="media__inner" data-parallax>{{img wall | Maria smiling against a soft pink wall, hands behind her head | (min-width: 900px) 42vw, 100vw | | eager | 50% 30%}}</div>
-      <span class="media__tag label">Menorca, Spain</span>
+    <a class="phero__scroll" href="#next" aria-label="Scroll to content"><span>Scroll</span><i></i></a>
+  </div>
+</section>
+<span id="next"></span>
+
+<section class="section intro">
+  <div class="container">
+    <div class="head-top"><span class="label">(01) &mdash; Hola</span><span class="label">Spanish-Canadian &middot; Trilingual</span></div>
+    <p class="statement" data-statement>I spent years <span class="inline-img">{{img pill-laptop | | 120px}}</span> climbing the ladder in digital strategy, then traded it <span class="inline-img">{{img pill-street | | 120px}}</span> for the work that lights me up: helping you find <em>yours</em> <span class="inline-img">{{img pill-door | | 120px}}</span>.</p>
+  </div>
+</section>
+
+<section class="section section--flush-top">
+  <div class="container">
+    <div class="band" data-theme="dark">
+      <div class="head-top head-top--light"><span class="label">(02) &mdash; In short</span><span class="label">The essentials</span></div>
+      <div class="band__grid">
+        <div class="band__item reveal"><p class="band__num">1,500<sup>+</sup></p><p class="small">hours of individual and group coaching</p></div>
+        <div class="band__item reveal"><p class="band__num">400<sup>+</sup></p><p class="small">clients helped to get unstuck</p></div>
+        <div class="band__item reveal"><p class="band__num">8<sup>+</sup> <em>yrs</em></p><p class="small">leading international teams before coaching</p></div>
+        <div class="band__item reveal"><p class="band__num">3</p><p class="small">languages, and one Spanadian spark</p></div>
+      </div>
     </div>
   </div>
 </section>
 
 <section class="section section--flush-top">
   <div class="container">
-    <div class="head-top"><span class="label">(01) &mdash; In short</span><span class="label">The essentials</span></div>
-    <div class="facts">
-      <div class="fact reveal"><p class="fact__num">1,500<sup>+</sup></p><p class="small">hours of individual and group coaching</p></div>
-      <div class="fact reveal"><p class="fact__num">400<sup>+</sup></p><p class="small">clients helped to get unstuck</p></div>
-      <div class="fact reveal"><p class="fact__num">8<sup>+</sup><em>yrs</em></p><p class="small">leading international teams before coaching</p></div>
-      <div class="fact reveal"><p class="fact__num">3</p><p class="small">languages, and one Spanadian spark</p></div>
-    </div>
-  </div>
-</section>
-
-<section class="section section--flush-top">
-  <div class="container">
-    <div class="head-top"><span class="label">(02) &mdash; My story</span><span class="label">The Queen of Transition</span></div>
+    <div class="head-top"><span class="label">(03) &mdash; My story</span><span class="label">The Queen of Transition</span></div>
     <div class="story">
       <div class="story__aside">
         <div class="media media--tall">
-          <div class="media__inner" data-parallax>{{img street | Maria in a yellow blazer looking back over her shoulder in a whitewashed street | (min-width: 900px) 34vw, 100vw | | | 55% 30%}}</div>
+          <div class="media__inner" data-parallax>{{img seated | Maria sitting on a stone step in a yellow blazer, smiling | (min-width: 900px) 34vw, 100vw | | | 50% 35%}}</div>
         </div>
       </div>
       <div class="story__text">
@@ -59,12 +73,55 @@ bodyClass: page-about
   </div>
 </section>
 
+<section class="journey-wrap">
+<div class="journey" data-theme="dark">
+  <div class="container">
+    <div class="head-top"><span class="label">(04) &mdash; The journey</span><span class="label">Five chapters</span></div>
+  </div>
+  <div class="hscroll">
+    <div class="hscroll__track">
+      <div class="hscroll__intro">
+        <h2 class="h-xl" data-split>From burnout to <em>flow.</em></h2>
+        <p class="body">The road that turned a fear of change into a career helping others through it.</p>
+      </div>
+        <article class="chapter ">
+          <p class="chapter__num">01</p>
+          <h3 class="chapter__title">Mediterranean <em>roots.</em></h3>
+          <p>Born and raised in Spain, with the warmth, curiosity and spark that still shape every session.</p>
+          <div class="chapter__img">{{img jump | | 380px | | | 50% 30%}}</div>
+        </article>
+        <article class="chapter ">
+          <p class="chapter__num">02</p>
+          <h3 class="chapter__title">Business &amp; the <em>world.</em></h3>
+          <p>A degree in Business and Commerce, a master's in International Business, and work across many countries and industries.</p>
+        </article>
+        <article class="chapter ">
+          <p class="chapter__num">03</p>
+          <h3 class="chapter__title">Climbing the <em>ladder.</em></h3>
+          <p>Eight-plus years leading international teams in digital strategy for clients like Microsoft, Disney and Adidas.</p>
+          <div class="chapter__img">{{img laptop | | 380px | | | 60% 40%}}</div>
+        </article>
+        <article class="chapter ">
+          <p class="chapter__num">04</p>
+          <h3 class="chapter__title">The <em>leap.</em></h3>
+          <p>It looked like success, but inside I was exhausted. I made a promise to myself and quit to find my own path.</p>
+        </article>
+        <article class="chapter chapter--sun">
+          <p class="chapter__num">05</p>
+          <h3 class="chapter__title">Live in <em>Flow.</em></h3>
+          <p>A CPCC and ICF PCC coach in Vancouver with 1,500+ hours, helping ambitious people find work that means something.</p>
+        </article>
+    </div>
+  </div>
+</div>
+</section>
+
 <section class="section section--flush-top">
   <div class="container">
     <div class="panel panel--sea" data-theme="dark">
       <div class="panel__grid">
         <div>
-          <p class="label label--dot">(03) &mdash; Now</p>
+          <p class="label label--dot">(05) &mdash; Now</p>
           <h2 class="h-xl" data-split>I help people find work that <em>means something.</em></h2>
         </div>
         <div class="body body--lg reveal">
@@ -78,7 +135,7 @@ bodyClass: page-about
 
 <section class="section section--flush-top">
   <div class="container">
-    <div class="head-top"><span class="label">(04) &mdash; How I coach</span><span class="label">Deep yet light-hearted</span></div>
+    <div class="head-top"><span class="label">(06) &mdash; How I coach</span><span class="label">Deep yet light-hearted</span></div>
     <div class="head head--split">
       <h2 class="h-xl" data-split>A Mediterranean spark, <em>a North American drive.</em></h2>
       <p class="lede reveal">As a Spanadian (Spanish-Canadian), I bring cultural diversity to the table, with whimsical energy that keeps sessions deep yet light-hearted, focused and engaging.</p>
@@ -105,17 +162,23 @@ bodyClass: page-about
 
 <section class="section section--flush-top">
   <div class="container">
-    <div class="head-top"><span class="label">(05) &mdash; Credentials</span><span class="label">Qualified &amp; certified</span></div>
-    <ul class="creds" role="list">
-      <li class="cred reveal"><span class="cred__k">ICF &mdash; PCC</span><span class="cred__v">Professional Certified Coach, International Coaching Federation</span>{{img pcc | ICF PCC badge | 64px | cred__badge}}</li>
-      <li class="cred reveal"><span class="cred__k">CPCC</span><span class="cred__v">Certified Professional Co-Active Coach</span></li>
-      <li class="cred reveal"><span class="cred__k">Speaker</span><span class="cred__v">Workshop facilitator and keynote speaker for groups of 5 to 300</span></li>
-      <li class="cred reveal"><span class="cred__k">Master's</span><span class="cred__v">Master's degree in International Business</span></li>
-      <li class="cred reveal"><span class="cred__k">Bachelor's</span><span class="cred__v">Business and Commerce</span></li>
-      <li class="cred reveal"><span class="cred__k">Trilingual</span><span class="cred__v">Coaching across cultures, including in Spanish</span></li>
-    </ul>
+    <div class="head-top"><span class="label">(07) &mdash; Credentials</span><span class="label">Qualified &amp; certified</span></div>
+    <div class="head head--split">
+      <h2 class="h-xl" data-split>Qualified, certified, <em>human.</em></h2>
+      <p class="lede reveal">Rigorous training and international experience, delivered with warmth and a sense of humour.</p>
+    </div>
+    <div class="cred-wall">
+      <div class="cred-card cred-card--sea reveal"><span class="label">International Coaching Federation</span>{{img pcc | ICF PCC badge | 64px}}<div><p class="cred-card__k">ICF <em>PCC</em></p><p class="small">Professional Certified Coach</p></div></div>
+      <div class="cred-card reveal"><span class="label">Co-Active Training Institute</span><div><p class="cred-card__k"><em>CPCC</em></p><p class="small">Certified Professional Co-Active Coach</p></div></div>
+      <div class="cred-card cred-card--sun reveal"><span class="label">On stage</span><div><p class="cred-card__k">5 <em>to</em> 300</p><p class="small">Workshop facilitator and keynote speaker for groups of every size</p></div></div>
+      <div class="cred-card reveal"><span class="label">Master's degree</span><div><p class="cred-card__k">International <em>Business</em></p><p class="small">Plus a bachelor's in Business and Commerce</p></div></div>
+      <div class="cred-card reveal"><span class="label">Experience</span><div><p class="cred-card__k">1,500<em>+ hrs</em></p><p class="small">Individual and group coaching in multinational organisations</p></div></div>
+      <div class="cred-card cred-card--sea reveal"><span class="label">Languages</span><div><p class="cred-card__k">Tri<em>lingual</em></p><p class="small">Coaching across cultures, including in Spanish</p></div></div>
+    </div>
   </div>
 </section>
+
+{{> words}}
 
 <section class="section section--flush-top">
   <div class="container">

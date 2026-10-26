@@ -5,7 +5,7 @@ nav: roadmap
 curtain: Free <em>roadmap</em>
 bodyClass: page-roadmap
 ---
-<section class="page-hero roadmap-hero">
+<section class="page-hero roadmap-hero" data-theme="dark">
   <div class="container roadmap-hero__grid">
     <div>
       <p class="label label--dot">Free e-guide</p>
@@ -15,7 +15,7 @@ bodyClass: page-roadmap
         <div class="signup__fields">
           <label class="field"><span class="visually-hidden">First name</span><input class="input" type="text" name="name" autocomplete="given-name" placeholder="First name" required></label>
           <label class="field"><span class="visually-hidden">Email</span><input class="input" type="email" name="email" autocomplete="email" placeholder="you@email.com" required></label>
-          <button class="btn btn--sea" type="submit">Send me the roadmap <span class="btn__icon">{{> arrow}}</span></button>
+          <button class="btn btn--sun" type="submit">Send me the roadmap <span class="btn__icon">{{> arrow}}</span></button>
         </div>
         <p class="signup__note small">Free. No spam, just the guide and the occasional helpful note from Maria.</p>
         <p class="form-msg" role="status" aria-live="polite"></p>
@@ -26,9 +26,14 @@ bodyClass: page-roadmap
       {{img roadmap | The 5-Step Roadmap e-guide on a tablet and a phone | (min-width: 900px) 40vw, 90vw | | eager}}
     </div>
   </div>
+  <div class="roadmap-hero__sea" aria-hidden="true"><svg class="pl-waves" viewBox="0 0 1600 200" preserveAspectRatio="none">
+    <path class="pl-wave pl-wave--1" d="M0 70c100-40 200 40 400 0s300-40 400 0 300 40 400 0 300-40 400 0v130H0z"/>
+    <path class="pl-wave pl-wave--2" d="M0 100c100-34 200 34 400 0s300-34 400 0 300 34 400 0 300-34 400 0v100H0z"/>
+    <path class="pl-wave pl-wave--3" d="M0 130c100-26 200 26 400 0s300-26 400 0 300 26 400 0 300-26 400 0v70H0z"/>
+  </svg></div>
 </section>
 
-<section class="section section--flush-top">
+<section class="section">
   <div class="container">
     <div class="head-top"><span class="label">(01) &mdash; Inside the guide</span><span class="label">Identify &middot; Overcome &middot; Initiate</span></div>
     <div class="steps3">

@@ -5,30 +5,41 @@ nav: contact
 curtain: Let's <em>talk</em>
 bodyClass: page-contact
 ---
-<section class="page-hero">
-  <div class="container">
-    <div class="page-hero__top">
-      <div class="page-hero__head">
-      <p class="label label--dot">Contact</p>
-      <h1 class="h-display page-hero__title" data-split>Let's start a <em>conversation.</em></h1>
+<section class="phero phero--short" data-theme="dark">
+  <div class="phero__frame">
+    <div class="phero__media"><div class="phero__img">{{img cafe | | 100vw | | eager | 50% 28%}}</div></div>
+    <div class="phero__shade" aria-hidden="true"></div>
+    <div class="phero__top"><span class="label">Contact</span><span class="label">Vancouver &middot; Zoom worldwide</span></div>
+    <aside class="phero__card">
+      <span class="label label--dot">Free</span>
+      <span class="phero__card-big">20 <em>min</em></span>
+      <span class="small">Virtual coffee. No pressure, no pitch.</span>
+    </aside>
+    <div class="phero__content">
+      <p class="label label--dot phero__eyebrow">Let's talk</p>
+      <h1 class="h-display phero__title"><span class="line"><span>Let's start a</span></span><span class="line"><span><em>conversation.</em></span></span></h1>
+      <div class="phero__foot">
+        <p class="phero__lede">Because we're all different, the best way to know if we're a good fit is to connect. Book a 20-minute virtual coffee, or drop me a note below.</p>
+        <div class="row phero__ctas"><a class="btn btn--sun magnetic" href="{{site.links.bookCall}}" target="_blank" rel="noopener" data-cursor="Book">Choose a time <span class="btn__icon">{{> arrow}}</span></a><a class="btn btn--glass" href="#message">Send a message</a></div>
       </div>
-      <figure class="hero-aside reveal">
-        <div class="hero-aside__img media">{{img cafe | Maria smiling at a cafe table with her laptop | (min-width: 900px) 22vw, 60vw | | eager | 50% 42%}}</div>
-        <figcaption><span class="label label--dot">Free &middot; 20 minutes</span><span class="small">A relaxed virtual coffee. No pressure, no pitch.</span></figcaption>
-      </figure>
     </div>
-    <div class="page-hero__foot">
-      <p class="lede reveal">Because we're all different, the best way to know if we're a good fit is to connect. Book a 20-minute virtual coffee, or drop me a note below.</p>
-      <ol class="next-steps reveal" role="list">
-        <li><span class="label">01</span><span>Pick a time that suits you</span></li>
-        <li><span class="label">02</span><span>We talk for 20 relaxed minutes</span></li>
-        <li><span class="label">03</span><span>You leave with a clear next step</span></li>
-      </ol>
-    </div>
+    <a class="phero__scroll" href="#next" aria-label="Scroll to content"><span>Scroll</span><i></i></a>
+  </div>
+</section>
+<span id="next"></span>
+
+<section class="section intro">
+  <div class="container">
+    <div class="head-top"><span class="label">(01) &mdash; How it works</span><span class="label">Simple &middot; Free &middot; 20 minutes</span></div>
+    <ol class="steps3" role="list">
+      <li class="step3 reveal"><span class="step3__n">01</span><h2 class="step3__t">Pick a <em>time</em></h2><p class="small">Choose a slot that suits you in Maria's calendar.</p></li>
+      <li class="step3 step3--sea reveal"><span class="step3__n">02</span><h2 class="step3__t">We <em>talk</em></h2><p class="small">Twenty relaxed minutes on Zoom about where you are and where you want to be.</p></li>
+      <li class="step3 step3--sun reveal"><span class="step3__n">03</span><h2 class="step3__t">You <em>decide</em></h2><p class="small">You leave with a clear next step, whether or not we work together.</p></li>
+    </ol>
   </div>
 </section>
 
-<section class="section section--flush-top">
+<section class="section section--flush-top" id="message">
   <div class="container contact">
     <a class="book-card reveal" href="{{site.links.bookCall}}" target="_blank" rel="noopener" data-theme="dark" data-cursor="Book">
       <span class="book-card__img" data-parallax>{{img laptop | Maria smiling on a video call | (min-width: 900px) 45vw, 100vw | | eager | 60% 40%}}</span>

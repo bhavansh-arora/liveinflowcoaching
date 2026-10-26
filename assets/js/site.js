@@ -32,7 +32,7 @@
     var t0 = performance.now(), MIN = 2500, MAX = 4200, shown = 0;
     var fontsReady = false, imgReady = false;
     (document.fonts ? document.fonts.ready : Promise.resolve()).then(function () { fontsReady = true; });
-    var heroImg = $(".hero img, .page-hero img");
+    var heroImg = $(".hero img, .phero img, .page-hero img");
     if (!heroImg || heroImg.complete) imgReady = true;
     else { heroImg.addEventListener("load", function () { imgReady = true; }); heroImg.addEventListener("error", function () { imgReady = true; }); }
     (function tick(now) {

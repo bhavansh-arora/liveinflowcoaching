@@ -87,6 +87,25 @@
     });
   }
 
+  /* Inner-page immersive hero */
+  var ph = $(".phero");
+  if (ph) {
+    var phLines = $$(".phero__title .line > span", ph);
+    gsap.set(phLines, { yPercent: 110 });
+    gsap.set([".phero__eyebrow", ".phero__foot", ".phero__card", ".phero__top", ".phero__scroll"], { autoAlpha: 0, y: 24 });
+    gsap.set(".phero__img", { scale: 1.16 });
+    LIF.whenIntro(function () {
+      var tl = gsap.timeline({ delay: 0.1 });
+      tl.to(".phero__img", { scale: 1, duration: 2.2, ease: "expo.out" }, 0)
+        .to(phLines, { yPercent: 0, duration: 1.3, ease: EASE, stagger: 0.12, onComplete: function () { $(".phero__title", ph).classList.add("is-in"); } }, 0.1)
+        .to([".phero__top", ".phero__eyebrow"], { autoAlpha: 1, y: 0, duration: 1, ease: EASE, stagger: 0.08 }, 0.2)
+        .to(".phero__foot", { autoAlpha: 1, y: 0, duration: 1.1, ease: EASE }, 0.5)
+        .to([".phero__card", ".phero__scroll"], { autoAlpha: 1, y: 0, duration: 1.1, ease: EASE, stagger: 0.1 }, 0.7);
+    });
+    gsap.to(".phero__media", { yPercent: 14, ease: "none", scrollTrigger: { trigger: ph, start: "top top", end: "bottom top", scrub: true } });
+    gsap.to(".phero__content", { yPercent: -12, autoAlpha: 0.15, ease: "none", scrollTrigger: { trigger: ph, start: "35% top", end: "bottom top", scrub: true } });
+  }
+
   /* ---------- Generic reveals ---------- */
   $$(".reveal").forEach(function (el) {
     var inHero = el.closest(".page-hero");
@@ -100,7 +119,7 @@
   });
 
   /* ---------- Everything else rises in too, so no text or image just sits there ---------- */
-  var SKIP = ".reveal, [data-split], .option__num, .hero, .page-hero, .menu, .marquee, .words, [data-statement], .genius, .feels, .hscroll, .footer-mark, .stack-card, .footer-top, .meet__stats";
+  var SKIP = ".reveal, [data-split], .option__num, .hero, .phero, .chapter, .page-hero, .menu, .marquee, .words, [data-statement], .genius, .feels, .hscroll, .footer-mark, .stack-card, .footer-top, .meet__stats";
   var autos = [];
   $$("main h2, main h3, main .lede, main .body, main p, main .btn, main .link, main li, main figure, main dl, main form, main details, .site-footer .footer-brand, .site-footer .footer-col").forEach(function (el) {
     if (el.closest(SKIP) || el.closest(".is-auto")) return;
@@ -112,7 +131,7 @@
   }
   /* Images settle from a gentle zoom as they scroll in. */
   $$("main img, .site-footer img").forEach(function (img) {
-    if (img.closest(".hero, .inline-img, .marquee, .hero-card, .feature__mock, .tile__badge, .pcc-badge, .cred__badge, .badge-spin")) return;
+    if (img.closest(".hero, .phero, .inline-img, .marquee, .hero-card, .feature__mock, .tile__badge, .pcc-badge, .cred__badge, .badge-spin")) return;
     var box = img.parentElement, clipped = false;
     for (var k = 0; k < 3 && box; k++, box = box.parentElement) { var o = getComputedStyle(box).overflow; if (o === "hidden" || o === "clip") { clipped = true; break; } }
     if (!clipped) return;
@@ -173,19 +192,20 @@
     });
   }
 
-  /* ---------- Client wins: pinned horizontal scroll on desktop ---------- */
-  var hs = $(".hscroll"), track = $(".hscroll__track");
-  if (hs && track) {
+  /* ---------- Horizontal rows (client wins, about journey): pinned sideways scroll on desktop ---------- */
+  $$(".hscroll").forEach(function (hs) {
+    var track = $(".hscroll__track", hs), host = hs.closest("section");
+    if (!track || !host) return;
     mm.add("(min-width: 900px)", function () {
       hs.classList.add("is-pinned");
       var dist = function () { return Math.max(0, track.scrollWidth - window.innerWidth); };
       var tw = gsap.to(track, {
         x: function () { return -dist(); }, ease: "none",
-        scrollTrigger: { trigger: ".wins", start: "top top", end: function () { return "+=" + dist(); }, pin: true, scrub: 0.3, invalidateOnRefresh: true, anticipatePin: 1 }
+        scrollTrigger: { trigger: host, start: "top top", end: function () { return "+=" + dist(); }, pin: true, scrub: 0.3, invalidateOnRefresh: true, anticipatePin: 1 }
       });
       return function () { hs.classList.remove("is-pinned"); tw.scrollTrigger && tw.scrollTrigger.kill(); tw.kill(); gsap.set(track, { clearProps: "transform" }); };
     });
-  }
+  });
 
   /* ---------- Word marquee reacts to scroll speed and direction ---------- */
   var wt = $(".words__track");

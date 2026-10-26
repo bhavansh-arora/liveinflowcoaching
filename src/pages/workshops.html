@@ -5,35 +5,63 @@ nav: workshops
 curtain: Team <em>Workshops</em>
 bodyClass: page-workshops
 ---
-<section class="page-hero">
-  <div class="container">
-    <div class="page-hero__top">
-      <div class="page-hero__head">
-      <p class="label label--dot">Workshops &amp; keynotes</p>
-      <h1 class="h-display page-hero__title" data-split>Leave them <em>buzzing.</em></h1>
+<section class="phero" data-theme="dark">
+  <div class="phero__frame">
+    <div class="phero__media"><div class="phero__img">{{img map | | 100vw | | eager | 50% 72%}}</div></div>
+    <div class="phero__shade" aria-hidden="true"></div>
+    <div class="phero__top"><span class="label">Workshops &amp; keynotes</span><span class="label">Online &middot; Face to face</span></div>
+    <aside class="phero__card">
+      <span class="label label--dot">Groups of</span>
+      <span class="phero__card-big">5 <em>to</em> 300</span>
+      <span class="small">Intimate teams to full conference rooms.</span>
+    </aside>
+    <div class="phero__content">
+      <p class="label label--dot phero__eyebrow">For teams, leaders and events</p>
+      <h1 class="h-display phero__title"><span class="line"><span>Leave them</span></span><span class="line"><span><em>buzzing.</em></span></span></h1>
+      <div class="phero__foot">
+        <p class="phero__lede">Want your team to learn practical tools, feel inspired and leave buzzing with energy? If your event needs connection and communication taught in an interactive, engaging way, I'm what you're looking for.</p>
+        <div class="row phero__ctas"><a class="btn btn--sun magnetic" href="{{site.links.workshopForm}}" target="_blank" rel="noopener" data-cursor="Plan it">Plan your workshop <span class="btn__icon">{{> arrow}}</span></a><a class="btn btn--glass" href="#topics">See the topics</a></div>
       </div>
-      <figure class="hero-aside reveal">
-        <div class="hero-aside__img media">{{img jump | Maria jumping with joy outside a Mediterranean doorway | (min-width: 900px) 22vw, 60vw | | eager | 50% 30%}}</div>
-        <figcaption><span class="label label--dot">Groups of 5 to 300</span><span class="small">In person or virtual, for teams of every size.</span></figcaption>
-      </figure>
     </div>
-    <div class="page-hero__foot">
-      <p class="lede reveal">Want your team to learn practical tools, feel inspired and leave buzzing with energy? If your event needs connection and communication taught in an interactive, engaging way, I'm what you're looking for.</p>
-      <div class="row reveal">
-        <a class="btn btn--sea magnetic" href="{{site.links.workshopForm}}" target="_blank" rel="noopener" data-cursor="Plan it">Plan your workshop <span class="btn__icon">{{> arrow}}</span></a>
-      </div>
-    </div>
+    <a class="phero__scroll" href="#next" aria-label="Scroll to content"><span>Scroll</span><i></i></a>
   </div>
+</section>
+<span id="next"></span>
+
+<section class="section intro">
   <div class="container">
-    <div class="wide-media media">
-      <div class="media__inner" data-parallax>{{img map | Maria with arms raised in front of a wooden world map | 100vw | | eager | 50% 72%}}</div>
-    </div>
+    <div class="head-top"><span class="label">(01) &mdash; The feeling</span><span class="label">Practical &middot; Playful &middot; Deep</span></div>
+    <p class="statement" data-statement>Workshops where people <span class="inline-img">{{img pill-map | | 120px}}</span> lean in, laugh, open up and walk out with tools <span class="inline-img">{{img pill-laptop | | 120px}}</span> they actually use on <em>Monday morning.</em></p>
   </div>
+  <div class="container">{{> clients}}</div>
 </section>
 
 <section class="section section--flush-top">
   <div class="container">
-    <div class="head-top"><span class="label">(01) &mdash; Topics</span><span class="label">Tailored to your team</span></div>
+    <div class="head-top"><span class="label">(02) &mdash; Formats</span><span class="label">Online or face to face</span></div>
+    <div class="paths">
+      <a class="tile tile--media reveal" href="{{site.links.workshopForm}}" target="_blank" rel="noopener" data-cursor="Plan it">
+        <span class="tile__img" data-parallax>{{img jump | Maria jumping for joy | (min-width: 760px) 33vw, 100vw | | | 50% 30%}}</span>
+        <span class="tile__overlay"><span class="label">Keynotes</span><span class="tile__title">Spark the <em>room.</em></span><span class="tile__desc">Energising talks for conferences, offsites and all-hands.</span></span>
+        <span class="circle-btn">{{> ne}}</span>
+      </a>
+      <a class="tile tile--media reveal" href="{{site.links.workshopForm}}" target="_blank" rel="noopener" data-cursor="Plan it">
+        <span class="tile__img" data-parallax>{{img laptop | Maria running a session on her laptop | (min-width: 760px) 33vw, 100vw | | | 60% 40%}}</span>
+        <span class="tile__overlay"><span class="label">Interactive workshops</span><span class="tile__title">Learn by <em>doing.</em></span><span class="tile__desc">Hands-on sessions with exercises your team will remember.</span></span>
+        <span class="circle-btn">{{> ne}}</span>
+      </a>
+      <a class="tile tile--media reveal" href="{{site.links.workshopForm}}" target="_blank" rel="noopener" data-cursor="Plan it">
+        <span class="tile__img" data-parallax>{{img street | Maria looking back in a whitewashed street | (min-width: 760px) 33vw, 100vw | | | 55% 30%}}</span>
+        <span class="tile__overlay"><span class="label">Leadership programmes</span><span class="tile__title">Grow your <em>leaders.</em></span><span class="tile__desc">Group coaching for high performers and women in tech.</span></span>
+        <span class="circle-btn">{{> ne}}</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="topics">
+  <div class="container">
+    <div class="head-top"><span class="label">(03) &mdash; Topics</span><span class="label">Tailored to your team</span></div>
     <div class="head head--split">
       <h2 class="h-xl" data-split>Unleash the <em>communal power</em> of your team.</h2>
       <p class="lede reveal">Every keynote and workshop is designed for your organisation, its audience and its needs. We'll choose the topics together, and you can leave the rest to me.</p>
@@ -53,7 +81,7 @@ bodyClass: page-workshops
     <div class="panel panel--sea" data-theme="dark">
       <div class="panel__grid">
         <div>
-          <p class="label label--dot">(02) &mdash; Style</p>
+          <p class="label label--dot">(04) &mdash; Style</p>
           <h2 class="h-xl" data-split>Warmth, play <em>&amp; depth.</em></h2>
         </div>
         <div class="reveal">
@@ -75,7 +103,21 @@ bodyClass: page-workshops
 
 <section class="section section--flush-top">
   <div class="container">
-    <div class="head-top"><span class="label">(03) &mdash; Organisations</span><span class="label">Online &amp; face to face</span></div>
+    <div class="band" data-theme="dark">
+      <div class="head-top head-top--light"><span class="label">(05) &mdash; At a glance</span><span class="label">For teams of every size</span></div>
+      <div class="band__grid">
+        <div class="band__item reveal"><p class="band__num">5<em>&ndash;</em>300</p><p class="small">people per session, from small teams to full auditoriums</p></div>
+        <div class="band__item reveal"><p class="band__num">8<sup>+</sup></p><p class="small">organisations, including LinkedIn, Twitch, Reddit and HubSpot</p></div>
+        <div class="band__item reveal"><p class="band__num">2 <em>ways</em></p><p class="small">online or face to face, wherever your people are</p></div>
+        <div class="band__item reveal"><p class="band__num">1,500<sup>+</sup></p><p class="small">hours of coaching experience behind every session</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section--flush-top">
+  <div class="container">
+    <div class="head-top"><span class="label">(06) &mdash; Organisations</span><span class="label">Online &amp; face to face</span></div>
     <ul class="orgs" role="list">
       <li class="reveal"><strong>LinkedIn</strong><span>Women in Tech programme</span></li>
       <li class="reveal"><strong>Twitch</strong><span>High Performing Leaders</span></li>
@@ -91,7 +133,7 @@ bodyClass: page-workshops
 
 <section class="section section--flush-top">
   <div class="container">
-    <div class="head-top"><span class="label">(04) &mdash; After the session</span><span class="label">Organisers say</span></div>
+    <div class="head-top"><span class="label">(07) &mdash; After the session</span><span class="label">Organisers say</span></div>
     <div class="quotes quotes--2">
       <figure class="qcard reveal">
         <span class="qmark" aria-hidden="true">&ldquo;</span>

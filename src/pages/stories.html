@@ -5,30 +5,40 @@ nav: stories
 curtain: Client <em>wins</em>
 bodyClass: page-stories
 ---
-<section class="page-hero">
-  <div class="container">
-    <div class="page-hero__top">
-      <div class="page-hero__head">
-      <p class="label label--dot">Client wins &amp; love notes</p>
-      <h1 class="h-display page-hero__title" data-split>This could be <em>you.</em></h1>
+<section class="phero" data-theme="dark">
+  <div class="phero__frame">
+    <div class="phero__media"><div class="phero__img">{{img door | | 100vw | | eager | 55% 42%}}</div></div>
+    <div class="phero__shade" aria-hidden="true"></div>
+    <div class="phero__top"><span class="label">Client wins</span><span class="label">Promotions &middot; Pivots &middot; New businesses</span></div>
+    <aside class="phero__card">
+      <span class="label label--dot">Helped</span>
+      <span class="phero__card-big">400<sup>+</sup></span>
+      <span class="small">Professionals get unstuck and move forward.</span>
+    </aside>
+    <div class="phero__content">
+      <p class="label label--dot phero__eyebrow">Client wins &amp; love notes</p>
+      <h1 class="h-display phero__title"><span class="line"><span>This could</span></span><span class="line"><span>be <em>you.</em></span></span></h1>
+      <div class="phero__foot">
+        <p class="phero__lede">See how driven professionals like you stepped into rewarding, meaningful careers. Finding clients' true path is the ultimate goal of every partnership.</p>
+        <div class="row phero__ctas"><a class="btn btn--sun magnetic" href="{{site.links.bookCall}}" target="_blank" rel="noopener" data-cursor="Book">Be the next story <span class="btn__icon">{{> arrow}}</span></a><a class="btn btn--glass" href="#notes">Read the love notes</a></div>
       </div>
-      <figure class="hero-aside reveal">
-        <div class="hero-aside__img media">{{img door | Maria laughing with arms outstretched against a green door | (min-width: 900px) 22vw, 60vw | | eager | 55% 45%}}</div>
-        <figcaption><span class="label label--dot">400+ clients</span><span class="small">From first-time managers to founders.</span></figcaption>
-      </figure>
     </div>
-    <div class="page-hero__foot">
-      <p class="lede reveal">See how driven professionals like you stepped into rewarding, meaningful careers. Finding clients' true path is the ultimate goal of every partnership.</p>
-      <div class="row reveal">
-        <a class="btn btn--sea magnetic" href="{{site.links.bookCall}}" target="_blank" rel="noopener" data-cursor="Book">Be the next story <span class="btn__icon">{{> arrow}}</span></a>
-      </div>
-    </div>
+    <a class="phero__scroll" href="#next" aria-label="Scroll to content"><span>Scroll</span><i></i></a>
   </div>
+</section>
+<span id="next"></span>
+
+<section class="section intro">
+  <div class="container">
+    <div class="head-top"><span class="label">(01) &mdash; Real people</span><span class="label">Real moves</span></div>
+    <p class="statement" data-statement>Directors, engineers, founders <span class="inline-img">{{img pill-door | | 120px}}</span> and dreamers who decided that <em>good enough</em> wasn't enough, and found work that feels like <em>flow</em> <span class="inline-img">{{img pill-street | | 120px}}</span>.</p>
+  </div>
+  <div class="container">{{> clients}}</div>
 </section>
 
 <section class="section section--flush-top">
   <div class="container">
-    <div class="head-top"><span class="label">(01) &mdash; Leadership transformations</span><span class="label">In their words</span></div>
+    <div class="head-top"><span class="label">(02) &mdash; Leadership transformations</span><span class="label">In their words</span></div>
     <div class="cases">
       <article class="case reveal">
         <div class="case__head">
@@ -98,7 +108,7 @@ bodyClass: page-stories
 
 <section class="section section--flush-top">
   <div class="container">
-    <div class="head-top"><span class="label">(02) &mdash; Career shifts</span><span class="label">Before &rarr; after</span></div>
+    <div class="head-top"><span class="label">(03) &mdash; Career shifts</span><span class="label">Before &rarr; after</span></div>
     <div class="shifts">
       <article class="shift reveal"><p class="shift__who">Natalie R.</p><p class="shift__b">Grinding, under water, unclear on her next move.</p><p class="shift__a">Clarity on her strengths and non-negotiables, a new CV and LinkedIn, and an offer from her first choice with a <strong>40% salary increase</strong> in under three months.</p></article>
       <article class="shift reveal"><p class="shift__who">Ashley B.</p><p class="shift__b">Looking for self-confidence.</p><p class="shift__a">Reconnected with her music, launched a song on Spotify, was <strong>promoted to Director at EA</strong> and moved cities to follow her dream.</p></article>
@@ -110,9 +120,11 @@ bodyClass: page-stories
   </div>
 </section>
 
-<section class="section section--flush-top">
+{{> words}}
+
+<section class="section" id="notes">
   <div class="container">
-    <div class="head-top"><span class="label">(03) &mdash; Love notes</span><span class="label">We love our clients</span></div>
+    <div class="head-top"><span class="label">(04) &mdash; Love notes</span><span class="label">We love our clients</span></div>
     <div class="head head--split">
       <h2 class="h-xl" data-split>Like talking with a <em>good friend.</em></h2>
       <p class="lede reveal">Notes from leaders, makers and career changers across North America and beyond.</p>
