@@ -250,7 +250,7 @@
 
   /* ---------- Sideways rows on phones: intro above the row, plus a swipe hint ---------- */
   var mqPhone = window.matchMedia("(max-width: 899px)");
-  $$(".hscroll, .ribbon").forEach(function (hs) {
+  $$(".hscroll").forEach(function (hs) {
     var track = hs.firstElementChild, intro = $(".hscroll__intro", hs);
     if (!track) return;
     var place = function () {

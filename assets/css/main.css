@@ -742,12 +742,10 @@ body.menu-open { overflow: hidden; }
 
 /* Photo ribbon: a collage that drifts sideways as you scroll */
 .ribbon { overflow: hidden; padding-block: clamp(8px, 1vw, 16px); }
-/* Phones and tablets: the strip is a normal swipeable row. */
-@media (max-width: 899px) {
-  .ribbon { overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x proximity; scroll-padding-inline: var(--gutter); scrollbar-width: none; -webkit-overflow-scrolling: touch; }
-  .ribbon::-webkit-scrollbar { display: none; }
-  .ribbon__item, .ribbon__card { scroll-snap-align: start; }
-}
+/* It drifts with the page scroll, and can also be dragged sideways by hand. */
+.ribbon { touch-action: pan-y; cursor: grab; -webkit-user-select: none; user-select: none; }
+.ribbon.is-dragging { cursor: grabbing; }
+.ribbon img { -webkit-user-drag: none; pointer-events: none; }
 .ribbon__track { display: flex; align-items: center; gap: var(--gap); width: max-content; padding-inline: var(--gutter); will-change: transform; }
 .ribbon__item, .ribbon__card { flex: none; border-radius: var(--r-lg); overflow: hidden; }
 .ribbon { --rh: clamp(190px, 24vw, 360px); }
