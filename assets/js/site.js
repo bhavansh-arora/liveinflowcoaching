@@ -53,8 +53,8 @@
       pre.classList.add("is-done");
       setTimeout(function () {
         var anim = pre.animate(
-          [{ clipPath: "inset(0 0 0 0 round 0)" }, { clipPath: "inset(0 0 100% 0 round 0 0 40% 40%)" }],
-          { duration: 1000, easing: "cubic-bezier(.76,0,.24,1)", fill: "forwards" });
+          [{ transform: "translateY(0)" }, { transform: "translateY(calc(100% + 120px))" }],
+          { duration: 1100, easing: "cubic-bezier(.76,0,.24,1)", fill: "forwards" });
         setTimeout(intro, 420);
         anim.onfinish = function () { html.classList.remove("is-loading"); pre.style.display = "none"; };
       }, 420);
@@ -64,11 +64,11 @@
     var cur = $(".curtain");
     var go = function () {
       $$(".curtain__inner > *", cur).forEach(function (el, i) {
-        el.animate([{ opacity: 1, transform: "none" }, { opacity: 0, transform: "translateY(-40px)" }], { duration: 500, delay: i * 40, easing: "cubic-bezier(.7,0,.84,0)", fill: "forwards" });
+        el.animate([{ opacity: 1, transform: "none" }, { opacity: 0, transform: "translateY(-30px)" }], { duration: 450, delay: i * 40, easing: "cubic-bezier(.7,0,.84,0)", fill: "forwards" });
       });
       var a = cur.animate(
-        [{ transform: "translateY(0)", borderRadius: "0" }, { transform: "translateY(-101%)", borderRadius: "0 0 50% 50% / 0 0 18% 18%" }],
-        { duration: 900, delay: 180, easing: "cubic-bezier(.76,0,.24,1)", fill: "forwards" });
+        [{ transform: "translateY(0)" }, { transform: "translateY(calc(100% + 120px))" }],
+        { duration: 1000, delay: 180, easing: "cubic-bezier(.76,0,.24,1)", fill: "forwards" });
       setTimeout(intro, 300);
       a.onfinish = function () { html.classList.remove("is-entering"); cur.getAnimations({ subtree: true }).forEach(function (x) { x.cancel(); }); };
     };
@@ -114,8 +114,8 @@
     if (store) store.setItem("lif-nav", "1");
     cur.classList.add("is-on");
     cur.animate(
-      [{ transform: "translateY(101%)", borderRadius: "50% 50% 0 0 / 18% 18% 0 0" }, { transform: "translateY(0)", borderRadius: "0" }],
-      { duration: 750, easing: "cubic-bezier(.76,0,.24,1)", fill: "forwards" });
+      [{ transform: "translateY(calc(100% + 120px))" }, { transform: "translateY(0)" }],
+      { duration: 800, easing: "cubic-bezier(.76,0,.24,1)", fill: "forwards" });
     $$(".curtain__inner > *", cur).forEach(function (el, i) {
       el.animate([{ opacity: 0, transform: "translateY(40px)" }, { opacity: 1, transform: "none" }], { duration: 520, delay: 200 + i * 60, easing: "cubic-bezier(.16,1,.3,1)", fill: "forwards" });
     });

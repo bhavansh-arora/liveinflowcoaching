@@ -180,14 +180,32 @@
       if (gCount) gCount.textContent = "0" + (i + 1);
     };
     venn.style.setProperty("--p", 0);
-    ST.create({
-      trigger: ".genius__steps", start: "top 75%", end: "bottom 65%", scrub: true,
-      onUpdate: function (self) { venn.style.setProperty("--p", self.progress.toFixed(3)); }
-    });
-    gSteps.forEach(function (step, i) {
+    mm.add("(min-width: 900px)", function () {
       ST.create({
-        trigger: step, start: "top 62%", end: "bottom 62%",
-        onEnter: function () { setStep(i); }, onEnterBack: function () { setStep(i); }
+        trigger: ".genius__steps", start: "top 75%", end: "bottom 65%", scrub: true,
+        onUpdate: function (self) { venn.style.setProperty("--p", self.progress.toFixed(3)); }
+      });
+      gSteps.forEach(function (step, i) {
+        ST.create({
+          trigger: step, start: "top 62%", end: "bottom 62%",
+          onEnter: function () { setStep(i); }, onEnterBack: function () { setStep(i); }
+        });
+      });
+    });
+    /* Phones: the circles come together as the diagram scrolls into view, then each step lights as you read it. */
+    mm.add("(max-width: 899px)", function () {
+      ST.create({
+        trigger: venn, start: "top 90%", end: "center 45%", scrub: true,
+        onUpdate: function (self) {
+          var p = self.progress; venn.style.setProperty("--p", p.toFixed(3));
+          venn.setAttribute("data-step", p < 0.45 ? 0 : p < 0.9 ? 1 : 2);
+        }
+      });
+      gSteps.forEach(function (step, i) {
+        ST.create({
+          trigger: step, start: "top 75%", end: "bottom 40%",
+          onToggle: function (self) { step.classList.toggle("is-active", self.isActive); }
+        });
       });
     });
   }

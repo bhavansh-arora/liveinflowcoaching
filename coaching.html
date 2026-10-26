@@ -36,9 +36,13 @@
   </script>
   <style>
     html.is-entering, html.is-loading { background: #082b2c; }
-    .curtain { position: fixed; inset: 0; z-index: 790; background: #082b2c; transform: translateY(101%); }
+    .curtain { position: fixed; inset: 0; z-index: 790; background: #082b2c; transform: translateY(calc(100% + 120px)); }
+    .tide__crest { position: absolute; left: 0; right: 0; bottom: calc(100% - 1px); height: 80px; overflow: hidden; pointer-events: none; }
+    .tide__crest path { fill: #082b2c; }
+    .tide__foot { position: absolute; left: 0; right: 0; top: calc(100% - 1px); height: 240px; background: #0b3a3b; }
+    .tide__clip { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
     html.is-entering .curtain { transform: none; }
-    .preloader { position: fixed; inset: 0; z-index: 800; background: #082b2c; color: #f5f0e6; display: none; overflow: hidden; }
+    .preloader { position: fixed; inset: 0; z-index: 800; background: #082b2c; color: #f5f0e6; display: none; }
     html.is-loading .preloader { display: grid; place-items: center; }
     .curtain__sea { position: absolute; left: 0; right: 0; bottom: 0; height: clamp(110px, 18vh, 30vh); overflow: hidden; }
     .pl-waves { position: absolute; left: 0; bottom: 0; width: 200%; height: 100%; animation: pl-flow 9s linear infinite; animation-delay: var(--wave-t, 0s); will-change: transform; transform: translate3d(0,0,0); }
@@ -74,8 +78,10 @@
 <body class="page-coaching" data-page="coaching" id="top">
   <a class="skip-link" href="#main">Skip to content</a>
 
-  <div class="preloader" aria-hidden="true">
-    <div class="preloader__glow"></div>
+  <div class="preloader tide" aria-hidden="true">
+    <div class="tide__crest" aria-hidden="true"><div class="pl-waves"><svg viewBox="0 0 1600 81" preserveAspectRatio="none"><path d="M0 40C66.7 18 133.3 18 200 40S333.3 62 400 40S533.3 18 600 40S733.3 62 800 40S933.3 18 1000 40S1133.3 62 1200 40S1333.3 18 1400 40S1533.3 62 1600 40V81H0Z"/></svg></div></div>
+    <div class="tide__foot"></div>
+    <div class="tide__clip"><div class="preloader__glow"></div></div>
     <div class="preloader__top"><span class="label">Live in Flow Coaching</span><span class="label">Vancouver &middot; Worldwide</span></div>
     <div class="preloader__inner">
       <span class="preloader__mark"><svg class="mark" viewBox="0 0 48 32" aria-hidden="true" focusable="false"><path class="mark__wave" d="M3 25.5c6.5-5 12.5 3.8 20 0s13.5-6.6 22-1.6" fill="none" stroke-width="2.6" stroke-linecap="round"/><path class="mark__hull" d="M10.5 16.5h27l-5.4 6.6H15.9z"/><path class="mark__sail" d="M24 3.2l8.6 13.3H15.4z"/><path class="mark__fold" d="M24 3.2l-3.2 13.3h-5.4z"/></svg>
@@ -84,17 +90,20 @@
       <p class="preloader__tag"><span class="pl-mask"><span>Career coaching with Maria Angoso</span></span></p>
     </div>
     <div class="preloader__sea"><div class="pl-waves" aria-hidden="true"><svg viewBox="0 0 1600 200" preserveAspectRatio="none">
-        <path class="pl-wave pl-wave--1" d="M0 70c100-40 200 40 400 0s300-40 400 0 300 40 400 0 300-40 400 0v130H0z"/>
-        <path class="pl-wave pl-wave--2" d="M0 100c100-34 200 34 400 0s300-34 400 0 300 34 400 0 300-34 400 0v100H0z"/>
-        <path class="pl-wave pl-wave--3" d="M0 130c100-26 200 26 400 0s300-26 400 0 300 26 400 0 300-26 400 0v70H0z"/>
-      </svg></div></div>
+      <path class="pl-wave pl-wave--1" d="M0 70C66.7 36 133.3 36 200 70S333.3 104 400 70S533.3 36 600 70S733.3 104 800 70S933.3 36 1000 70S1133.3 104 1200 70S1333.3 36 1400 70S1533.3 104 1600 70V200H0Z"/>
+      <path class="pl-wave pl-wave--2" d="M0 100C66.7 126 133.3 126 200 100S333.3 74 400 100S533.3 126 600 100S733.3 74 800 100S933.3 126 1000 100S1133.3 74 1200 100S1333.3 126 1400 100S1533.3 74 1600 100V200H0Z"/>
+      <path class="pl-wave pl-wave--3" d="M0 130C66.7 112 133.3 112 200 130S333.3 148 400 130S533.3 112 600 130S733.3 148 800 130S933.3 112 1000 130S1133.3 148 1200 130S1333.3 112 1400 130S1533.3 148 1600 130V200H0Z"/>
+    </svg></div></div>
     <div class="preloader__bottom">
       <p class="preloader__words"><span>Clarity</span><span>Confidence</span><span>Courage</span><span>Flow</span></p>
       <p class="preloader__count"><span data-count>0</span><sup>%</sup></p>
     </div>
     <div class="preloader__bar"><i></i></div>
   </div>
-  <div class="curtain" aria-hidden="true">
+  <div class="curtain tide" aria-hidden="true">
+    <div class="tide__crest" aria-hidden="true"><div class="pl-waves"><svg viewBox="0 0 1600 81" preserveAspectRatio="none"><path d="M0 40C66.7 18 133.3 18 200 40S333.3 62 400 40S533.3 18 600 40S733.3 62 800 40S933.3 18 1000 40S1133.3 62 1200 40S1333.3 18 1400 40S1533.3 62 1600 40V81H0Z"/></svg></div></div>
+    <div class="tide__foot"></div>
+    <div class="tide__clip"></div>
     <div class="curtain__inner">
       <span class="curtain__mark"><svg class="mark" viewBox="0 0 48 32" aria-hidden="true" focusable="false"><path class="mark__wave" d="M3 25.5c6.5-5 12.5 3.8 20 0s13.5-6.6 22-1.6" fill="none" stroke-width="2.6" stroke-linecap="round"/><path class="mark__hull" d="M10.5 16.5h27l-5.4 6.6H15.9z"/><path class="mark__sail" d="M24 3.2l8.6 13.3H15.4z"/><path class="mark__fold" d="M24 3.2l-3.2 13.3h-5.4z"/></svg>
 </span>
@@ -102,9 +111,9 @@
       <p class="curtain__page"><span class="curtain__dot"></span><span class="curtain__title">1:1 <em>Coaching</em></span></p>
     </div>
     <div class="curtain__sea"><div class="pl-waves" aria-hidden="true"><svg viewBox="0 0 1600 200" preserveAspectRatio="none">
-      <path class="pl-wave pl-wave--1" d="M0 70c100-40 200 40 400 0s300-40 400 0 300 40 400 0 300-40 400 0v130H0z"/>
-      <path class="pl-wave pl-wave--2" d="M0 100c100-34 200 34 400 0s300-34 400 0 300 34 400 0 300-34 400 0v100H0z"/>
-      <path class="pl-wave pl-wave--3" d="M0 130c100-26 200 26 400 0s300-26 400 0 300 26 400 0 300-26 400 0v70H0z"/>
+      <path class="pl-wave pl-wave--1" d="M0 70C66.7 36 133.3 36 200 70S333.3 104 400 70S533.3 36 600 70S733.3 104 800 70S933.3 36 1000 70S1133.3 104 1200 70S1333.3 36 1400 70S1533.3 104 1600 70V200H0Z"/>
+      <path class="pl-wave pl-wave--2" d="M0 100C66.7 126 133.3 126 200 100S333.3 74 400 100S533.3 126 600 100S733.3 74 800 100S933.3 126 1000 100S1133.3 74 1200 100S1333.3 126 1400 100S1533.3 74 1600 100V200H0Z"/>
+      <path class="pl-wave pl-wave--3" d="M0 130C66.7 112 133.3 112 200 130S333.3 148 400 130S533.3 112 600 130S733.3 148 800 130S933.3 112 1000 130S1133.3 148 1200 130S1333.3 112 1400 130S1533.3 148 1600 130V200H0Z"/>
     </svg></div></div>
   </div>
   <div class="scroll-progress" aria-hidden="true"></div>

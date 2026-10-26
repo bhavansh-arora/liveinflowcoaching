@@ -400,7 +400,7 @@ body.menu-open { overflow: hidden; }
   position: absolute; left: 50%; top: 52%; width: 56%; aspect-ratio: 1; border-radius: 50%; display: flex; padding: 13%;
   mix-blend-mode: screen; opacity: 0.55; transition: opacity 0.5s var(--ease), box-shadow 0.5s var(--ease);
 }
-.venn__c b { font-family: var(--mono); font-weight: 400; font-size: clamp(0.62rem, 0.55rem + 0.25vw, 0.78rem); letter-spacing: 0.08em; text-transform: uppercase; color: var(--on-dark); }
+.venn__c b { max-width: 9ch; font-family: var(--mono); font-weight: 400; font-size: clamp(0.62rem, 0.55rem + 0.25vw, 0.78rem); letter-spacing: 0.08em; text-transform: uppercase; color: var(--on-dark); }
 .venn__c--1 { background: rgba(243, 182, 46, 0.66); transform: translate(-50%, calc(-50% - var(--o))); justify-content: center; align-items: flex-start; }
 .venn__c--2 { background: rgba(43, 152, 160, 0.8); transform: translate(calc(-50% - var(--o) * 0.866), calc(-50% + var(--o) * 0.5)); align-items: flex-end; justify-content: flex-start; }
 .venn__c--3 { background: rgba(227, 156, 131, 0.74); transform: translate(calc(-50% + var(--o) * 0.866), calc(-50% + var(--o) * 0.5)); align-items: flex-end; justify-content: flex-end; text-align: right; }
@@ -424,11 +424,11 @@ body.menu-open { overflow: hidden; }
   .genius__grid { gap: 28px; }
   .genius__copy { display: contents; }
   .genius__copy > .head-top, .genius__copy > .h-xl { order: -2; }
-  .genius__stage { order: -1; position: sticky; top: 72px; z-index: 2; padding-block: 12px 16px; background: var(--sea-deep); box-shadow: 0 18px 24px -12px var(--sea-deep); }
-  .venn { width: min(58vw, 270px); }
-  .genius__caption { display: none; }
-  .genius__steps { position: relative; z-index: 1; margin-top: 0; }
-  .genius__step { min-height: 38vh; align-content: center; }
+  /* Phones: the diagram sits in the flow (no sticky layer), and assembles as it scrolls into view. */
+  .genius__stage { order: -1; padding-block: 8px 4px; }
+  .venn { width: min(78vw, 340px); }
+  .genius__steps { margin-top: 0; }
+  .genius__step { padding-block: 22px; }
 }
 
 /* ---------- Wins (horizontal) ---------- */
@@ -1326,8 +1326,15 @@ textarea.input { resize: vertical; min-height: 140px; line-height: 1.5; }
 @keyframes pl-flow { from { transform: translate3d(0, 0, 0); } to { transform: translate3d(-50%, 0, 0); } }
 
 /* ---------- Page curtain: same sea, boat and wordmark as the intro ---------- */
-.curtain { display: grid; place-items: center; pointer-events: none; visibility: hidden; color: var(--on-dark); overflow: hidden; }
-.curtain::before { content: ""; position: absolute; left: 50%; bottom: -46vmax; width: 120vmax; height: 80vmax; border-radius: 50%; transform: translateX(-50%); background: radial-gradient(closest-side, rgba(243, 182, 46, 0.5), rgba(233, 142, 58, 0.16) 45%, transparent 72%); }
+/* The intro and the curtain move like a tide: a wavy crest on top, extra sea below the screen edge,
+   and only transforms are animated so Safari can run them while the next page loads. */
+.tide__crest { position: absolute; left: 0; right: 0; bottom: calc(100% - 1px); height: 80px; overflow: hidden; pointer-events: none; }
+.tide__crest path { fill: #082b2c; }
+.tide__crest .pl-waves { animation-duration: 7s; }
+.tide__foot { position: absolute; left: 0; right: 0; top: calc(100% - 1px); height: 240px; background: #0b3a3b; pointer-events: none; }
+.tide__clip { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+.curtain { display: grid; place-items: center; pointer-events: none; visibility: hidden; color: var(--on-dark); overflow: visible; will-change: transform; }
+.curtain .tide__clip::before { content: ""; position: absolute; left: 50%; bottom: -46vmax; width: 120vmax; height: 80vmax; border-radius: 50%; transform: translateX(-50%); background: radial-gradient(closest-side, rgba(243, 182, 46, 0.5), rgba(233, 142, 58, 0.16) 45%, transparent 72%); }
 .curtain.is-on, html.is-entering .curtain { visibility: visible; }
 .curtain__inner { position: relative; z-index: 2; display: grid; justify-items: center; gap: clamp(14px, 2vw, 22px); text-align: center; padding-inline: var(--gutter); margin-top: -6vh; }
 .curtain__mark { display: block; animation: pl-bob 3.2s ease-in-out infinite; }
