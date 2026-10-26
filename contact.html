@@ -35,7 +35,7 @@
   </script>
   <style>
     html.is-entering, html.is-loading { background: #082b2c; }
-    .curtain { position: fixed; inset: 0; z-index: 790; background: #0b3a3b; transform: translateY(101%); }
+    .curtain { position: fixed; inset: 0; z-index: 790; background: #082b2c; transform: translateY(101%); }
     html.is-entering .curtain { transform: none; }
     .preloader { position: fixed; inset: 0; z-index: 800; background: #082b2c; color: #f5f0e6; display: none; overflow: hidden; }
     html.is-loading .preloader { display: grid; place-items: center; }
@@ -92,9 +92,14 @@
     <div class="curtain__inner">
       <span class="curtain__mark"><svg class="mark" viewBox="0 0 48 32" aria-hidden="true" focusable="false"><path class="mark__wave" d="M3 25.5c6.5-5 12.5 3.8 20 0s13.5-6.6 22-1.6" fill="none" stroke-width="2.6" stroke-linecap="round"/><path class="mark__hull" d="M10.5 16.5h27l-5.4 6.6H15.9z"/><path class="mark__sail" d="M24 3.2l8.6 13.3H15.4z"/><path class="mark__fold" d="M24 3.2l-3.2 13.3h-5.4z"/></svg>
 </span>
-      <p class="curtain__title">Let's <em>talk</em></p>
-      <span class="label curtain__label">Live in Flow Coaching</span>
+      <p class="curtain__brand">Live in <em>Flow</em></p>
+      <p class="curtain__page"><span class="curtain__dot"></span><span class="curtain__title">Let's <em>talk</em></span></p>
     </div>
+    <div class="curtain__sea"><svg class="pl-waves" viewBox="0 0 1600 200" preserveAspectRatio="none" aria-hidden="true">
+      <path class="pl-wave pl-wave--1" d="M0 70c100-40 200 40 400 0s300-40 400 0 300 40 400 0 300-40 400 0v130H0z"/>
+      <path class="pl-wave pl-wave--2" d="M0 100c100-34 200 34 400 0s300-34 400 0 300 34 400 0 300-34 400 0v100H0z"/>
+      <path class="pl-wave pl-wave--3" d="M0 130c100-26 200 26 400 0s300-26 400 0 300 26 400 0 300-26 400 0v70H0z"/>
+    </svg></div>
   </div>
   <div class="scroll-progress" aria-hidden="true"></div>
   <div class="cursor" aria-hidden="true"><span class="cursor__label"></span></div>

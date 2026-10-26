@@ -99,6 +99,29 @@
     onEnter: function (els) { gsap.to(els, { autoAlpha: 1, y: 0, duration: 1.1, ease: EASE, stagger: 0.08, overwrite: true }); }
   });
 
+  /* ---------- Everything else rises in too, so no text or image just sits there ---------- */
+  var SKIP = ".reveal, [data-split], .hero, .page-hero, .menu, .marquee, .words, [data-statement], .genius, .feels, .hscroll, .footer-mark, .stack-card, .footer-top, .meet__stats";
+  var autos = [];
+  $$("main h2, main h3, main .lede, main .body, main p, main .btn, main .link, main li, main figure, main dl, main form, main details, .site-footer .footer-brand, .site-footer .footer-col").forEach(function (el) {
+    if (el.closest(SKIP) || el.closest(".is-auto")) return;
+    el.classList.add("is-auto"); autos.push(el);
+  });
+  if (autos.length) {
+    gsap.set(autos, { autoAlpha: 0, y: 28 });
+    ST.batch(autos, { start: "top 92%", once: true, onEnter: function (els) { gsap.to(els, { autoAlpha: 1, y: 0, duration: 1, ease: EASE, stagger: 0.07, overwrite: true }); } });
+  }
+  /* Images settle from a gentle zoom as they scroll in. */
+  $$("main img, .site-footer img").forEach(function (img) {
+    if (img.closest(".hero, .inline-img, .marquee, .hero-card, .feature__mock, .tile__badge, .pcc-badge, .cred__badge, .badge-spin")) return;
+    var box = img.parentElement, clipped = false;
+    for (var k = 0; k < 3 && box; k++, box = box.parentElement) { var o = getComputedStyle(box).overflow; if (o === "hidden" || o === "clip") { clipped = true; break; } }
+    if (!clipped) return;
+    gsap.set(img, { scale: 1.18, transformOrigin: "50% 50%" });
+    var zoom = function () { gsap.to(img, { scale: 1, duration: 1.8, ease: EASE }); };
+    if (img.closest(".page-hero")) LIF.whenIntro(zoom);
+    else ST.create({ trigger: img.parentElement, start: "top 95%", once: true, onEnter: zoom });
+  });
+
   /* ---------- Image clip reveal + parallax ---------- */
   $$(".media, .stack-card__media, .trait__img, .meet__arch").forEach(function (el) {
     var inHero = el.closest(".page-hero");
@@ -124,25 +147,29 @@
     });
   });
 
-  /* ---------- Zone of genius: circles converge as you scroll ---------- */
-  var genius = $(".genius"), venn = $(".venn");
-  if (genius && venn) {
-    var steps = $$(".genius__step");
-    var setP = function (p) {
-      venn.style.setProperty("--p", p.toFixed(3));
-      var a = p < 0.34 ? 0 : p < 0.72 ? 1 : 2;
-      steps.forEach(function (s, i) { s.classList.toggle("is-active", i === a); });
+  /* ---------- Sound familiar: lines light up one by one ---------- */
+  $$(".feel").forEach(function (row) {
+    ST.create({ trigger: row, start: "top 72%", onEnter: function () { row.classList.add("is-on"); }, onLeaveBack: function () { row.classList.remove("is-on"); } });
+  });
+
+  /* ---------- Zone of genius: steps scroll normally, the diagram stays in view and converges ---------- */
+  var venn = $(".venn"), gSteps = $$(".genius__step"), gCount = $(".genius__count b");
+  if (venn && gSteps.length) {
+    var setStep = function (i) {
+      gSteps.forEach(function (s, k) { s.classList.toggle("is-active", k === i); });
+      venn.setAttribute("data-step", i);
+      if (gCount) gCount.textContent = "0" + (i + 1);
     };
-    setP(0);
-    mm.add("(min-width: 900px)", function () {
-      genius.classList.add("genius--pinned");
-      var st = ST.create({ trigger: genius.parentElement, start: "top top", end: "+=90%", pin: true, scrub: true, onUpdate: function (self) { setP(self.progress); } });
-      return function () { genius.classList.remove("genius--pinned"); st.kill(); };
+    venn.style.setProperty("--p", 0);
+    ST.create({
+      trigger: ".genius__steps", start: "top 75%", end: "bottom 65%", scrub: true,
+      onUpdate: function (self) { venn.style.setProperty("--p", self.progress.toFixed(3)); }
     });
-    mm.add("(max-width: 899px)", function () {
-      var st = ST.create({ trigger: venn, start: "top 85%", end: "bottom 40%", scrub: true, onUpdate: function (self) { setP(self.progress); } });
-      steps.forEach(function (s) { s.classList.add("is-active"); });
-      return function () { st.kill(); };
+    gSteps.forEach(function (step, i) {
+      ST.create({
+        trigger: step, start: "top 62%", end: "bottom 62%",
+        onEnter: function () { setStep(i); }, onEnterBack: function () { setStep(i); }
+      });
     });
   }
 

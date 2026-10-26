@@ -80,7 +80,7 @@
 
   /* ---------- Page curtain on internal links ---------- */
   var titles = {
-    "index.html": "Live in <em>Flow</em>", "about.html": "About <em>Maria</em>", "coaching.html": "1:1 <em>Coaching</em>",
+    "index.html": "<em>Home</em>", "about.html": "About <em>Maria</em>", "coaching.html": "1:1 <em>Coaching</em>",
     "workshops.html": "Team <em>Workshops</em>", "stories.html": "Client <em>wins</em>", "roadmap.html": "Free <em>roadmap</em>",
     "contact.html": "Let's <em>talk</em>"
   };
