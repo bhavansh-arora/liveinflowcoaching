@@ -100,7 +100,7 @@
   });
 
   /* ---------- Everything else rises in too, so no text or image just sits there ---------- */
-  var SKIP = ".reveal, [data-split], .hero, .page-hero, .menu, .marquee, .words, [data-statement], .genius, .feels, .hscroll, .footer-mark, .stack-card, .footer-top, .meet__stats";
+  var SKIP = ".reveal, [data-split], .option__num, .hero, .page-hero, .menu, .marquee, .words, [data-statement], .genius, .feels, .hscroll, .footer-mark, .stack-card, .footer-top, .meet__stats";
   var autos = [];
   $$("main h2, main h3, main .lede, main .body, main p, main .btn, main .link, main li, main figure, main dl, main form, main details, .site-footer .footer-brand, .site-footer .footer-col").forEach(function (el) {
     if (el.closest(SKIP) || el.closest(".is-auto")) return;
