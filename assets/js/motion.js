@@ -255,9 +255,11 @@
 
   /* ---------- Photo ribbon drifts sideways with the scroll ---------- */
   $$("[data-ribbon]").forEach(function (tr) {
+    mm.add("(min-width: 900px)", function () {
     gsap.fromTo(tr, { x: function () { return Math.min(0, window.innerWidth - tr.scrollWidth) * 0.15; } }, {
       x: function () { return Math.min(0, window.innerWidth - tr.scrollWidth); }, ease: "none",
       scrollTrigger: { trigger: tr.parentElement, start: "top bottom", end: "bottom top", scrub: 0.4, invalidateOnRefresh: true }
+    });
     });
   });
 

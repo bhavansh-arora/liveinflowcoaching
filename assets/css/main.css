@@ -742,6 +742,12 @@ body.menu-open { overflow: hidden; }
 
 /* Photo ribbon: a collage that drifts sideways as you scroll */
 .ribbon { overflow: hidden; padding-block: clamp(8px, 1vw, 16px); }
+/* Phones and tablets: the strip is a normal swipeable row. */
+@media (max-width: 899px) {
+  .ribbon { overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x proximity; scroll-padding-inline: var(--gutter); scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+  .ribbon::-webkit-scrollbar { display: none; }
+  .ribbon__item, .ribbon__card { scroll-snap-align: start; }
+}
 .ribbon__track { display: flex; align-items: center; gap: var(--gap); width: max-content; padding-inline: var(--gutter); will-change: transform; }
 .ribbon__item, .ribbon__card { flex: none; border-radius: var(--r-lg); overflow: hidden; }
 .ribbon { --rh: clamp(190px, 24vw, 360px); }
@@ -1316,7 +1322,7 @@ textarea.input { resize: vertical; min-height: 140px; line-height: 1.5; }
 .preloader__bar i { display: block; height: 100%; background: var(--sun-grad); transform-origin: 0 50%; transform: scaleX(var(--p)); }
 .preloader.is-done .pl-mask > * { animation: pl-out 0.7s var(--ease) forwards; }
 .preloader.is-done .preloader__mark { animation: pl-up 0.8s var(--ease) forwards; }
-.preloader.is-done .preloader__bottom, .preloader.is-done .preloader__top { opacity: 0; transition: opacity 0.4s; }
+.preloader.is-done .preloader__bottom, .preloader.is-done .preloader__top, .preloader.is-done .preloader__bar { opacity: 0; transition: opacity 0.4s; }
 @keyframes pl-rise { to { transform: none; } }
 @keyframes pl-out { from { transform: none; } to { transform: translateY(-110%); } }
 @keyframes pl-up { to { transform: translateY(-40px); opacity: 0; } }
@@ -1326,12 +1332,10 @@ textarea.input { resize: vertical; min-height: 140px; line-height: 1.5; }
 @keyframes pl-flow { from { transform: translate3d(0, 0, 0); } to { transform: translate3d(-50%, 0, 0); } }
 
 /* ---------- Page curtain: same sea, boat and wordmark as the intro ---------- */
-/* The intro and the curtain move like a tide: a wavy crest on top, extra sea below the screen edge,
-   and only transforms are animated so Safari can run them while the next page loads. */
-.tide__crest { position: absolute; left: 0; right: 0; bottom: calc(100% - 1px); height: 80px; overflow: hidden; pointer-events: none; }
-.tide__crest path { fill: #082b2c; }
-.tide__crest .pl-waves { animation-duration: 7s; }
-.tide__foot { position: absolute; left: 0; right: 0; top: calc(100% - 1px); height: 240px; background: #0b3a3b; pointer-events: none; }
+/* The intro and the curtain have a curved cap on top and extra sea below the screen edge (so Safari's toolbar never shows a gap).
+   Only transforms are animated, so Safari can run them while the next page loads. */
+.tide__cap { position: absolute; left: 0; right: 0; bottom: calc(100% - 1px); height: 14vh; background: #082b2c; border-radius: 50% 50% 0 0 / 100% 100% 0 0; pointer-events: none; }
+.tide__foot { position: absolute; left: 0; right: 0; top: calc(100% - 1px); height: 260px; background: #0b3a3b; border-radius: 0 0 50% 50% / 0 0 140px 140px; pointer-events: none; }
 .tide__clip { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
 .curtain { display: grid; place-items: center; pointer-events: none; visibility: hidden; color: var(--on-dark); overflow: visible; will-change: transform; }
 .curtain .tide__clip::before { content: ""; position: absolute; left: 50%; bottom: -46vmax; width: 120vmax; height: 80vmax; border-radius: 50%; transform: translateX(-50%); background: radial-gradient(closest-side, rgba(243, 182, 46, 0.5), rgba(233, 142, 58, 0.16) 45%, transparent 72%); }
