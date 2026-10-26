@@ -253,24 +253,32 @@
     return function () { tws.forEach(function (t) { t.scrollTrigger && t.scrollTrigger.kill(); t.kill(); }); gsap.set(cards, { clearProps: "transform,--dim" }); };
   });
 
-  /* ---------- Photo ribbon: drifts with the scroll, and can be dragged by hand without stopping the drift ---------- */
+  /* ---------- Photo ribbon: runs on its own like a marquee, speeds up with the scroll, and follows a drag or swipe ---------- */
   $$("[data-ribbon]").forEach(function (tr) {
-    var box = tr.parentElement, base = 0, drag = 0, x = 0, vel = 0, down = false, sx = 0, sy = 0, sd = 0, lx = 0, lt = 0, axis = "";
-    var min = function () { return Math.min(0, box.clientWidth - tr.scrollWidth); };
-    var clampDrag = function () { var m = min(); if (base + drag > 0) drag = -base; if (base + drag < m) drag = m - base; };
+    var box = tr.parentElement;
+    Array.prototype.slice.call(tr.children).forEach(function (el) { tr.appendChild(el.cloneNode(true)); });
+    var half = 0, x = 0, vel = 0, boost = 0, down = false, axis = "", sx = 0, sy = 0, lx = 0, lt = 0, onScreen = false, SPEED = 0.6;
+    var measure = function () { var first = tr.children[0], mid = tr.children[tr.children.length / 2]; half = mid.offsetLeft - first.offsetLeft; };
+    measure(); window.addEventListener("resize", measure); window.addEventListener("load", measure);
+    var wrap = function () { if (half) { while (x <= -half) x += half; while (x > 0) x -= half; } };
     ST.create({
       trigger: box, start: "top bottom", end: "bottom top",
-      onUpdate: function (self) { base = min() * (0.15 + self.progress * 0.85); clampDrag(); }
+      onToggle: function (self) { onScreen = self.isActive; },
+      onUpdate: function (self) { boost = Math.min(8, Math.abs(self.getVelocity()) / 300); }
     });
-    gsap.ticker.add(function () {
-      if (!down && Math.abs(vel) > 0.05) { drag += vel; vel *= 0.94; clampDrag(); }
-      var target = base + drag;
-      if (Math.abs(target - x) < 0.1 && !down) return;
-      x += (target - x) * (down ? 0.5 : 0.12);
+    gsap.ticker.add(function (t, dt) {
+      if (!onScreen) return;
+      var k = Math.min(3, dt / 16.67);
+      if (!down) {
+        x -= (SPEED + boost) * k;
+        if (Math.abs(vel) > 0.05) { x += vel * k; vel *= Math.pow(0.94, k); }
+      }
+      boost *= Math.pow(0.92, k);
+      wrap();
       tr.style.transform = "translate3d(" + x.toFixed(2) + "px,0,0)";
     });
     box.addEventListener("pointerdown", function (e) {
-      down = true; axis = e.pointerType === "mouse" ? "x" : ""; sx = lx = e.clientX; sy = e.clientY; sd = drag; vel = 0; lt = performance.now();
+      down = true; vel = 0; axis = e.pointerType === "mouse" ? "x" : ""; sx = lx = e.clientX; sy = e.clientY; lt = performance.now();
       if (axis) { box.classList.add("is-dragging"); box.setPointerCapture(e.pointerId); }
     });
     box.addEventListener("pointermove", function (e) {
@@ -279,16 +287,15 @@
         var dx = Math.abs(e.clientX - sx), dy = Math.abs(e.clientY - sy);
         if (dx < 6 && dy < 6) return;
         axis = dx > dy ? "x" : "y";
-        if (axis === "x") { box.classList.add("is-dragging"); try { box.setPointerCapture(e.pointerId); } catch (err) {} }
+        if (axis === "x") { box.classList.add("is-dragging"); lx = e.clientX; }
       }
-      if (axis !== "x") return;
-      var now = performance.now();
-      drag = sd + (e.clientX - sx); clampDrag();
-      vel = (e.clientX - lx) / Math.max(1, now - lt) * 16; lx = e.clientX; lt = now;
+      if (axis !== "x") { down = false; return; }
+      var now = performance.now(), d = e.clientX - lx;
+      x += d; wrap();
+      vel = d / Math.max(1, now - lt) * 16; lx = e.clientX; lt = now;
     });
-    var up = function () { if (!down) return; down = false; box.classList.remove("is-dragging"); if (axis !== "x") vel = 0; };
-    box.addEventListener("pointerup", up); box.addEventListener("pointercancel", up); box.addEventListener("lostpointercapture", up);
-    window.addEventListener("resize", clampDrag);
+    var up = function () { if (!down) return; down = false; box.classList.remove("is-dragging"); };
+    box.addEventListener("pointerup", up); box.addEventListener("pointercancel", up);
   });
 
   /* ---------- Coaching programmes: the sticky photo follows the option you are reading ---------- */
