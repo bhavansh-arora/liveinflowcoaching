@@ -34,10 +34,10 @@
     })(document);
   </script>
   <style>
-    html.is-entering, html.is-loading { background: #0b3a3b; }
+    html.is-entering, html.is-loading { background: #082b2c; }
     .curtain { position: fixed; inset: 0; z-index: 790; background: #0b3a3b; transform: translateY(101%); }
     html.is-entering .curtain { transform: none; }
-    .preloader { position: fixed; inset: 0; z-index: 800; background: #f5f0e6; display: none; }
+    .preloader { position: fixed; inset: 0; z-index: 800; background: #082b2c; color: #f5f0e6; display: none; overflow: hidden; }
     html.is-loading .preloader { display: grid; place-items: center; }
   </style>
   <link rel="preload" href="assets/fonts/inter-tight-normal-300-700.woff2" as="font" type="font/woff2" crossorigin>
@@ -69,18 +69,33 @@
   <a class="skip-link" href="#main">Skip to content</a>
 
   <div class="preloader" aria-hidden="true">
-    <div class="preloader__top"><span class="label">Live in Flow Coaching</span><span class="label">Clarity &middot; Confidence &middot; Courage</span></div>
+    <div class="preloader__glow"></div>
+    <div class="preloader__top"><span class="label">Live in Flow Coaching</span><span class="label">Vancouver &middot; Worldwide</span></div>
     <div class="preloader__inner">
-      <div class="preloader__sea">
-        <svg class="preloader__wave" viewBox="0 0 400 40" preserveAspectRatio="none"><path pathLength="1" d="M0 26c33-14 67 14 100 0s67-14 100 0 67 14 100 0 67-14 100 0"/></svg>
-        <span class="preloader__boat"><svg class="mark" viewBox="0 0 48 32" aria-hidden="true" focusable="false"><path class="mark__wave" d="M3 25.5c6.5-5 12.5 3.8 20 0s13.5-6.6 22-1.6" fill="none" stroke-width="2.6" stroke-linecap="round"/><path class="mark__hull" d="M10.5 16.5h27l-5.4 6.6H15.9z"/><path class="mark__sail" d="M24 3.2l8.6 13.3H15.4z"/><path class="mark__fold" d="M24 3.2l-3.2 13.3h-5.4z"/></svg>
+      <span class="preloader__mark"><svg class="mark" viewBox="0 0 48 32" aria-hidden="true" focusable="false"><path class="mark__wave" d="M3 25.5c6.5-5 12.5 3.8 20 0s13.5-6.6 22-1.6" fill="none" stroke-width="2.6" stroke-linecap="round"/><path class="mark__hull" d="M10.5 16.5h27l-5.4 6.6H15.9z"/><path class="mark__sail" d="M24 3.2l8.6 13.3H15.4z"/><path class="mark__fold" d="M24 3.2l-3.2 13.3h-5.4z"/></svg>
 </span>
-      </div>
-      <p class="preloader__name"><span>Live in</span> <em>Flow</em></p>
+      <p class="preloader__name"><span class="pl-mask"><span>Live in</span></span> <span class="pl-mask"><em>Flow</em></span></p>
+      <p class="preloader__tag"><span class="pl-mask"><span>Career coaching with Maria Angoso</span></span></p>
     </div>
-    <div class="preloader__bottom"><span class="label">Maria Angoso &middot; Career coach</span><span class="label preloader__count"><span data-count>0</span>%</span></div>
+    <div class="preloader__sea"><svg class="pl-waves" viewBox="0 0 1600 200" preserveAspectRatio="none" aria-hidden="true">
+        <path class="pl-wave pl-wave--1" d="M0 70c100-40 200 40 400 0s300-40 400 0 300 40 400 0 300-40 400 0v130H0z"/>
+        <path class="pl-wave pl-wave--2" d="M0 100c100-34 200 34 400 0s300-34 400 0 300 34 400 0 300-34 400 0v100H0z"/>
+        <path class="pl-wave pl-wave--3" d="M0 130c100-26 200 26 400 0s300-26 400 0 300 26 400 0 300-26 400 0v70H0z"/>
+      </svg></div>
+    <div class="preloader__bottom">
+      <p class="preloader__words"><span>Clarity</span><span>Confidence</span><span>Courage</span><span>Flow</span></p>
+      <p class="preloader__count"><span data-count>0</span><sup>%</sup></p>
+    </div>
+    <div class="preloader__bar"><i></i></div>
   </div>
-  <div class="curtain" aria-hidden="true"><p class="curtain__title">Live in <em>Flow</em></p></div>
+  <div class="curtain" aria-hidden="true">
+    <div class="curtain__inner">
+      <span class="curtain__mark"><svg class="mark" viewBox="0 0 48 32" aria-hidden="true" focusable="false"><path class="mark__wave" d="M3 25.5c6.5-5 12.5 3.8 20 0s13.5-6.6 22-1.6" fill="none" stroke-width="2.6" stroke-linecap="round"/><path class="mark__hull" d="M10.5 16.5h27l-5.4 6.6H15.9z"/><path class="mark__sail" d="M24 3.2l8.6 13.3H15.4z"/><path class="mark__fold" d="M24 3.2l-3.2 13.3h-5.4z"/></svg>
+</span>
+      <p class="curtain__title">Live in <em>Flow</em></p>
+      <span class="label curtain__label">Live in Flow Coaching</span>
+    </div>
+  </div>
   <div class="scroll-progress" aria-hidden="true"></div>
   <div class="cursor" aria-hidden="true"><span class="cursor__label"></span></div>
 
@@ -206,9 +221,52 @@
 </div>
 </section>
 
+<section class="section section--flush-top familiar" id="familiar">
+  <div class="container">
+    <div class="head-top"><span class="label">(02) &mdash; Sound familiar?</span><span class="label">And what shifts with coaching</span></div>
+    <div class="head head--split">
+      <h2 class="h-xl" data-split>Successful on paper, <em>stuck inside?</em></h2>
+      <p class="lede reveal">Most of the people I work with are high achievers in tech. From the outside it all looks fine. From the inside, something is missing.</p>
+    </div>
+    <div class="pains">
+      <div class="pain reveal" tabindex="0">
+        <div class="pain__top"><span class="label">01</span><span class="pain__dot" aria-hidden="true"></span></div>
+        <p class="pain__q">You're good at your job, but it no longer <em>lights you up.</em></p>
+        <p class="pain__a"><span class="label">With coaching</span>Reconnect with your values and your zone of genius.</p>
+      </div>
+      <div class="pain reveal" tabindex="0">
+        <div class="pain__top"><span class="label">02</span><span class="pain__dot" aria-hidden="true"></span></div>
+        <p class="pain__q">Sunday evenings come with a <em>knot</em> in your stomach.</p>
+        <p class="pain__a"><span class="label">With coaching</span>Design work that gives you energy instead of taking it.</p>
+      </div>
+      <div class="pain reveal" tabindex="0">
+        <div class="pain__top"><span class="label">03</span><span class="pain__dot" aria-hidden="true"></span></div>
+        <p class="pain__q">You know something has to change, but not <em>what or how.</em></p>
+        <p class="pain__a"><span class="label">With coaching</span>Get a clear, practical roadmap to your next move.</p>
+      </div>
+      <div class="pain reveal" tabindex="0">
+        <div class="pain__top"><span class="label">04</span><span class="pain__dot" aria-hidden="true"></span></div>
+        <p class="pain__q">A voice says it's too <em>risky</em> to start over.</p>
+        <p class="pain__a"><span class="label">With coaching</span>Meet your inner saboteur, then move past it.</p>
+      </div>
+      <div class="pain reveal" tabindex="0">
+        <div class="pain__top"><span class="label">05</span><span class="pain__dot" aria-hidden="true"></span></div>
+        <p class="pain__q">You give everything at work and have <em>nothing left</em> for you.</p>
+        <p class="pain__a"><span class="label">With coaching</span>Set boundaries and build a balance that lasts.</p>
+      </div>
+      <a class="pain pain--cta reveal" href="https://hello.dubsado.com/public/appointment-scheduler/64e4763e03ac474d197883fd/schedule" target="_blank" rel="noopener" data-cursor="Book">
+        <div class="pain__top"><span class="label label--dot">The good news</span><span class="circle-btn circle-btn--dark"><svg class="arr" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M5 11l6-6M6 5h5v5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+</span></div>
+        <p class="pain__q">You don't have to figure it out <em>alone.</em></p>
+        <p class="small">Start with a free 20-minute virtual coffee.</p>
+      </a>
+    </div>
+  </div>
+</section>
+
 <section class="section section--flush-top" id="work">
   <div class="container">
-    <div class="head-top"><span class="label">(02) &mdash; How we can work together</span><span class="label">1:1 &middot; Leaders &middot; Teams</span></div>
+    <div class="head-top"><span class="label">(03) &mdash; How we can work together</span><span class="label">1:1 &middot; Leaders &middot; Teams</span></div>
     <div class="head head--split">
       <h2 class="h-xl" data-split>Three paths, <em>one you.</em></h2>
       <p class="lede reveal">Whether you're craving a change, stepping into leadership or building something of your own, each partnership is shaped around where you are and where you want to be.</p>
@@ -278,7 +336,7 @@
   <div class="genius__pin">
     <div class="container genius__grid">
       <div class="genius__copy">
-        <div class="head-top head-top--light"><span class="label">(03) &mdash; Your zone of genius</span></div>
+        <div class="head-top head-top--light"><span class="label">(04) &mdash; Your zone of genius</span></div>
         <h2 class="h-xl" data-split>Do you work in your <em>zone of genius?</em></h2>
         <div class="genius__steps">
           <p class="genius__step is-active" data-step="0">Feeling unfulfilled at work drains your energy. We're at our best when we lean into our unique strengths and values.</p>
@@ -304,7 +362,7 @@
 
 <section class="section wins" id="wins">
   <div class="container">
-    <div class="head-top"><span class="label">(04) &mdash; Client wins</span><span class="label">Promotions &middot; Pivots &middot; Side hustles</span></div>
+    <div class="head-top"><span class="label">(05) &mdash; Client wins</span><span class="label">Promotions &middot; Pivots &middot; Side hustles</span></div>
   </div>
   <div class="hscroll">
     <div class="hscroll__track">
@@ -364,41 +422,55 @@
 
 <section class="section how" id="how">
   <div class="container">
-    <div class="head-top"><span class="label">(05) &mdash; How it works</span><span class="label">Talk &middot; Explore &middot; Move</span></div>
+    <div class="head-top"><span class="label">(06) &mdash; How it works</span><span class="label">Talk &middot; Explore &middot; Move</span></div>
     <div class="head head--split">
       <h2 class="h-xl" data-split>From stuck to <em>in flow.</em></h2>
       <p class="lede reveal">Every session is tailored to you. I'll be your thinking partner, your cheerleader and your accountability partner.</p>
     </div>
     <div class="stack-cards">
-      <article class="stack-card">
+      <article class="stack-card" style="--i:0">
         <div class="stack-card__text">
-          <p class="stack-card__num">01</p>
-          <h3 class="h-lg">Virtual <em>coffee</em></h3>
-          <p class="body">A free 20-minute call to talk about where you are and what you want. Communication is the key to a strong partnership, so we start by seeing if we're the right fit.</p>
+          <div class="stack-card__top"><span class="stack-card__num">Step 01</span><span class="label">Free &middot; 20 minutes</span></div>
+          <div class="stack-card__main">
+            <h3 class="h-lg">Virtual <em>coffee</em></h3>
+            <p class="body body--lg">A relaxed 20-minute call about where you are and what you want next. We see if we're the right fit, with no pressure and no pitch.</p>
+          </div>
+          <div class="stack-card__foot"><div class="stack-card__actions"><a class="btn btn--sea btn--sm magnetic" href="https://hello.dubsado.com/public/appointment-scheduler/64e4763e03ac474d197883fd/schedule" target="_blank" rel="noopener" data-cursor="Book">Book your coffee <svg class="arr" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+</a></div><span class="stack-card__big" aria-hidden="true">01</span></div>
         </div>
         <div class="stack-card__media"><img src="assets/img/laptop-2000.webp" srcset="assets/img/laptop-800.webp 800w, assets/img/laptop-1400.webp 1400w, assets/img/laptop-2000.webp 2000w" sizes="(min-width: 900px) 45vw, 100vw" width="2000" height="1540" alt="Maria on a video call with her laptop and a coffee" style="object-position:60% 40%" loading="lazy" decoding="async"></div>
       </article>
-      <article class="stack-card">
+      <article class="stack-card" style="--i:1">
         <div class="stack-card__text">
-          <p class="stack-card__num">02</p>
-          <h3 class="h-lg">Deep <em>dive</em></h3>
-          <p class="body">On Zoom, we explore who you are, where you are and where you want to be: your values, your zone of genius and the saboteurs that keep you small.</p>
+          <div class="stack-card__top"><span class="stack-card__num">Step 02</span><span class="label">Weeks 1&ndash;3</span></div>
+          <div class="stack-card__main">
+            <h3 class="h-lg">Deep <em>dive</em></h3>
+            <p class="body body--lg">On Zoom, we explore who you are, where you are and where you want to be: your values, your zone of genius and the saboteurs that keep you small.</p>
+          </div>
+          <div class="stack-card__foot"><div class="stack-card__actions"><span class="pill pill--sm">Values</span><span class="pill pill--sm">Zone of genius</span><span class="pill pill--sm">Saboteurs</span></div><span class="stack-card__big" aria-hidden="true">02</span></div>
         </div>
         <div class="stack-card__media"><img src="assets/img/seated-1600.webp" srcset="assets/img/seated-600.webp 600w, assets/img/seated-1000.webp 1000w, assets/img/seated-1600.webp 1600w" sizes="(min-width: 900px) 45vw, 100vw" width="2400" height="3600" alt="Maria sitting on a stone step in a yellow blazer" style="object-position:50% 35%" loading="lazy" decoding="async"></div>
       </article>
-      <article class="stack-card">
+      <article class="stack-card" style="--i:2">
         <div class="stack-card__text">
-          <p class="stack-card__num">03</p>
-          <h3 class="h-lg">Turn dreams into <em>goals</em></h3>
-          <p class="body">We shape a clear, achievable roadmap and you take the first steps, with practical tools between sessions and someone in your corner keeping you accountable.</p>
+          <div class="stack-card__top"><span class="stack-card__num">Step 03</span><span class="label">Your roadmap</span></div>
+          <div class="stack-card__main">
+            <h3 class="h-lg">Dreams into <em>goals</em></h3>
+            <p class="body body--lg">We shape a clear, achievable roadmap and you take the first steps, with practical tools between sessions and someone in your corner keeping you accountable.</p>
+          </div>
+          <div class="stack-card__foot"><div class="stack-card__actions"><span class="pill pill--sm">Roadmap</span><span class="pill pill--sm">Practical tools</span><span class="pill pill--sm">Accountability</span></div><span class="stack-card__big" aria-hidden="true">03</span></div>
         </div>
         <div class="stack-card__media"><img src="assets/img/dock-768.webp" srcset="assets/img/dock-400.webp 400w, assets/img/dock-768.webp 768w" sizes="(min-width: 900px) 45vw, 100vw" width="768" height="1024" alt="Feet stepping onto a weathered wooden jetty above the sea" style="object-position:50% 60%" loading="lazy" decoding="async"></div>
       </article>
-      <article class="stack-card">
+      <article class="stack-card" style="--i:3">
         <div class="stack-card__text">
-          <p class="stack-card__num">04</p>
-          <h3 class="h-lg">Live in <em>flow</em></h3>
-          <p class="body">You make the move with confidence: a new role, a promotion, a business of your own, or the same job with renewed purpose and balance.</p>
+          <div class="stack-card__top"><span class="stack-card__num">Step 04</span><span class="label">The new chapter</span></div>
+          <div class="stack-card__main">
+            <h3 class="h-lg">Live in <em>flow</em></h3>
+            <p class="body body--lg">You make the move with confidence: a new role, a promotion, a business of your own, or the same job with renewed purpose and balance.</p>
+          </div>
+          <div class="stack-card__foot"><div class="stack-card__actions"><a class="btn btn--sm magnetic" href="stories.html" data-cursor="Read">See client wins <svg class="arr" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+</a></div><span class="stack-card__big" aria-hidden="true">04</span></div>
         </div>
         <div class="stack-card__media"><img src="assets/img/wall-1600.webp" srcset="assets/img/wall-600.webp 600w, assets/img/wall-1000.webp 1000w, assets/img/wall-1600.webp 1600w" sizes="(min-width: 900px) 45vw, 100vw" width="3360" height="5040" alt="Maria relaxed against a pink wall, hands behind her head" style="object-position:50% 25%" loading="lazy" decoding="async"></div>
       </article>
@@ -406,9 +478,41 @@
   </div>
 </section>
 
+<section class="section section--flush-top meet" id="meet">
+  <div class="container">
+    <div class="head-top"><span class="label">(07) &mdash; Meet your coach</span><span class="label">Spanish-Canadian &middot; Vancouver</span></div>
+    <div class="meet__grid">
+      <div class="meet__media">
+        <div class="meet__arch"><img src="assets/img/street-1600.webp" srcset="assets/img/street-600.webp 600w, assets/img/street-1000.webp 1000w, assets/img/street-1600.webp 1600w" sizes="(min-width: 900px) 40vw, 100vw" width="1643" height="1498" alt="Maria in a yellow blazer looking back over her shoulder in a whitewashed street" style="object-position:55% 30%" loading="lazy" decoding="async"></div>
+        <a class="badge-spin magnetic" href="https://hello.dubsado.com/public/appointment-scheduler/64e4763e03ac474d197883fd/schedule" target="_blank" rel="noopener" data-cursor="Book" aria-label="Book a free 20-minute call">
+          <svg class="badge-spin__ring" viewBox="0 0 200 200" aria-hidden="true"><defs><path id="badge-circle" d="M100 100m-74 0a74 74 0 1 1 148 0a74 74 0 1 1-148 0"/></defs><text textLength="452" lengthAdjust="spacing"><textPath href="#badge-circle" textLength="452" lengthAdjust="spacing">Book a free call &#8226; Virtual coffee &#8226; 20 minutes &#8226;</textPath></text></svg>
+          <span class="badge-spin__core"><svg class="mark" viewBox="0 0 48 32" aria-hidden="true" focusable="false"><path class="mark__wave" d="M3 25.5c6.5-5 12.5 3.8 20 0s13.5-6.6 22-1.6" fill="none" stroke-width="2.6" stroke-linecap="round"/><path class="mark__hull" d="M10.5 16.5h27l-5.4 6.6H15.9z"/><path class="mark__sail" d="M24 3.2l8.6 13.3H15.4z"/><path class="mark__fold" d="M24 3.2l-3.2 13.3h-5.4z"/></svg>
+</span>
+        </a>
+      </div>
+      <div class="meet__copy">
+        <h2 class="h-xl" data-split>The Queen of <em>Transition.</em></h2>
+        <p class="lede reveal">I spent years leading international digital teams for clients like Microsoft, Disney and Adidas. It looked like success. Inside, I was exhausted. So I took the leap, and now I help others find work that means something.</p>
+        <blockquote class="meet__quote reveal">&ldquo;Excitement lives on the other side of your comfort zone.&rdquo;</blockquote>
+        <dl class="meet__stats reveal">
+          <div><dt>1,500<sup>+</sup></dt><dd>coaching hours</dd></div>
+          <div><dt>400<sup>+</sup></dt><dd>clients unstuck</dd></div>
+          <div><dt>8<sup>+</sup></dt><dd>years leading teams</dd></div>
+          <div><dt>3</dt><dd>languages spoken</dd></div>
+        </dl>
+        <div class="row reveal">
+          <a class="btn btn--sea magnetic" href="about.html">Read my story <span class="btn__icon"><svg class="arr" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+</span></a>
+          <a class="btn btn--ghost" href="https://open.spotify.com/episode/5dkRDhEeynD4ybVFEynSAQ" target="_blank" rel="noopener">Listen to my interview</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="section section--flush-top" id="words">
   <div class="container">
-    <div class="head-top"><span class="label">(06) &mdash; Kind words</span><span class="label">From real clients</span></div>
+    <div class="head-top"><span class="label">(08) &mdash; Kind words</span><span class="label">From real clients</span></div>
     <div class="head head--split">
       <h2 class="h-xl" data-split>Loved by her <em>clients.</em></h2>
       <p class="lede reveal">Intuitive, empathetic and contagiously positive. Here's what it feels like to work with Maria.</p>
@@ -417,12 +521,12 @@
       <figure class="qcard reveal">
         <span class="qmark" aria-hidden="true">&ldquo;</span>
         <blockquote class="qcard__body">Maria provided incredibly valuable support as I transitioned from my corporate job at Slack to work that aligns with the impact I want to have. She is an incredible listener and creates a safe space for self-exploration.</blockquote>
-        <figcaption class="qcard__who"><strong>Spencer Graham</strong><span class="label">Slack</span></figcaption>
+        <figcaption class="qcard__who"><span class="avatar" aria-hidden="true">SG</span><span class="qcard__id"><strong>Spencer Graham</strong><span class="label">Slack</span></span></figcaption>
       </figure>
       <figure class="qcard reveal">
         <span class="qmark" aria-hidden="true">&ldquo;</span>
         <blockquote class="qcard__body">I attribute a massive decision to move companies to all the conversations and help she provided. The tools and language she gave me will forever help me make decisions that are right for me and my values.</blockquote>
-        <figcaption class="qcard__who"><strong>Adrienne Allnutt</strong><span class="label">Director, Design Ops &middot; ServiceNow</span></figcaption>
+        <figcaption class="qcard__who"><span class="avatar avatar--sun" aria-hidden="true">AA</span><span class="qcard__id"><strong>Adrienne Allnutt</strong><span class="label">Director, Design Ops &middot; ServiceNow</span></span></figcaption>
       </figure>
       <a class="qcard qcard--cta reveal" href="stories.html" data-cursor="Read">
         <div class="tile__top"><span class="label label--dot">Your turn</span><span class="circle-btn circle-btn--light"><svg class="arr" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M5 11l6-6M6 5h5v5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -439,7 +543,7 @@
     <div class="feature" data-theme="dark">
       <div class="feature__media" data-parallax><img src="assets/img/curbside-1600.webp" srcset="assets/img/curbside-600.webp 600w, assets/img/curbside-1000.webp 1000w, assets/img/curbside-1600.webp 1600w" sizes="100vw" width="2400" height="3600" alt="" style="object-position:50% 40%" loading="lazy" decoding="async"></div>
       <div class="feature__shade" aria-hidden="true"></div>
-      <div class="feature__top"><span class="label">(07) &mdash; Free guide</span><span class="label">5 steps &middot; 100% practical</span></div>
+      <div class="feature__top"><span class="label">(09) &mdash; Free guide</span><span class="label">5 steps &middot; 100% practical</span></div>
       <div class="feature__body">
         <div>
           <h2 class="h-xl" data-split>Get clarity on your next <em>tech career</em> move.</h2>
@@ -477,6 +581,21 @@
           <a class="btn btn--ghost" href="roadmap.html">Get the free roadmap</a>
         </div>
       </div>
+    </div>
+
+    <div class="footer-brand">
+      <div class="footer-brand__id">
+        <a class="brand" href="index.html" aria-label="Live in Flow Coaching, home"><svg class="mark" viewBox="0 0 48 32" aria-hidden="true" focusable="false"><path class="mark__wave" d="M3 25.5c6.5-5 12.5 3.8 20 0s13.5-6.6 22-1.6" fill="none" stroke-width="2.6" stroke-linecap="round"/><path class="mark__hull" d="M10.5 16.5h27l-5.4 6.6H15.9z"/><path class="mark__sail" d="M24 3.2l8.6 13.3H15.4z"/><path class="mark__fold" d="M24 3.2l-3.2 13.3h-5.4z"/></svg>
+<span class="brand__name">Live in <em>Flow</em></span><span class="brand__tag">Coaching</span></a>
+
+        <p class="small">Career transition coaching for driven tech professionals. Based in Vancouver, coaching worldwide on Zoom in English and Spanish.</p>
+      </div>
+      <ul class="socials" role="list">
+        <li><a href="https://www.linkedin.com/in/mariaangoso/" target="_blank" rel="noopener" aria-label="Maria on LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.75h4v11H3zm7 0h3.8v1.6h.06c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.77 2.65 4.77 6.1v5.35h-4v-4.74c0-1.13-.02-2.59-1.58-2.59-1.58 0-1.82 1.23-1.82 2.5v4.83h-4z"/></svg></a></li>
+        <li><a href="https://www.instagram.com/liveinflowcoaching/" target="_blank" rel="noopener" aria-label="Live in Flow on Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 7.3a4.7 4.7 0 1 0 0 9.4 4.7 4.7 0 0 0 0-9.4zm0 7.7a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm4.9-8.98a1.1 1.1 0 1 1 0 2.2 1.1 1.1 0 0 1 0-2.2zM12 3.6c2.73 0 3.05.01 4.13.06 2.77.13 4.07 1.44 4.2 4.2.05 1.08.06 1.4.06 4.14s-.01 3.05-.06 4.13c-.13 2.76-1.42 4.07-4.2 4.2-1.08.05-1.4.06-4.13.06s-3.06-.01-4.13-.06c-2.79-.13-4.07-1.45-4.2-4.2C3.62 15.05 3.6 14.73 3.6 12s.02-3.06.07-4.13c.13-2.77 1.42-4.07 4.2-4.2C8.94 3.61 9.27 3.6 12 3.6zM12 2c-2.72 0-3.06.01-4.13.06C4.2 2.23 2.24 4.2 2.06 7.87 2.01 8.94 2 9.28 2 12s.01 3.06.06 4.13c.17 3.67 2.13 5.64 5.8 5.81 1.08.05 1.42.06 4.14.06s3.06-.01 4.13-.06c3.66-.17 5.64-2.13 5.81-5.81.05-1.07.06-1.41.06-4.13s-.01-3.06-.06-4.13c-.17-3.66-2.13-5.64-5.8-5.81C15.05 2.01 14.72 2 12 2z"/></svg></a></li>
+        <li><a href="https://www.facebook.com/liveinflowcoaching/" target="_blank" rel="noopener" aria-label="Live in Flow on Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 21.9v-7.4h2.5l.4-2.9h-2.9V9.8c0-.84.24-1.4 1.44-1.4h1.53V5.8a20 20 0 0 0-2.23-.12c-2.2 0-3.72 1.35-3.72 3.82v2.12H8v2.9h2.52v7.4z"/></svg></a></li>
+        <li><a href="mailto:maria@liveinflowcoaching.com" aria-label="Email Maria"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h18v14H3zm2 2v.4l7 4.7 7-4.7V7zm14 2.8-7 4.6-7-4.6V17h14z"/></svg></a></li>
+      </ul>
     </div>
 
     <div class="footer-cols">

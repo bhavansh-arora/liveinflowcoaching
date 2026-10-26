@@ -28,8 +28,8 @@
   var pre = $(".preloader");
   if (html.classList.contains("is-loading") && pre) {
     var countEl = $("[data-count]", pre);
-    var sea = $(".preloader__sea", pre);
-    var t0 = performance.now(), MIN = 1900, MAX = 3600, shown = 0;
+    var plWords = $$(".preloader__words span", pre);
+    var t0 = performance.now(), MIN = 2500, MAX = 4200, shown = 0;
     var fontsReady = false, imgReady = false;
     (document.fonts ? document.fonts.ready : Promise.resolve()).then(function () { fontsReady = true; });
     var heroImg = $(".hero img, .page-hero img");
@@ -43,23 +43,34 @@
       if (shown > target) shown = target;
       var p = Math.round(shown);
       if (countEl) countEl.textContent = p;
-      if (sea) { sea.style.setProperty("--x", (shown * 0.9 + 5).toFixed(2) + "%"); sea.style.setProperty("--draw", (1 - shown / 100).toFixed(3)); }
+      pre.style.setProperty("--p", (shown / 100).toFixed(3));
+      plWords.forEach(function (w, i) { w.classList.toggle("is-lit", p >= (i + 1) * 25 - 12); });
       if (ready && p >= 100 && el > MIN) return leave();
       requestAnimationFrame(tick);
     })(t0);
     function leave() {
       if (store) store.setItem("lif-seen", "1");
-      var anim = pre.animate([{ clipPath: "inset(0 0 0 0)" }, { clipPath: "inset(0 0 100% 0)" }], { duration: 900, easing: "cubic-bezier(.76,0,.24,1)", fill: "forwards" });
-      setTimeout(intro, 380);
-      anim.onfinish = function () { html.classList.remove("is-loading"); pre.style.display = "none"; };
+      pre.classList.add("is-done");
+      setTimeout(function () {
+        var anim = pre.animate(
+          [{ clipPath: "inset(0 0 0 0 round 0)" }, { clipPath: "inset(0 0 100% 0 round 0 0 40% 40%)" }],
+          { duration: 1000, easing: "cubic-bezier(.76,0,.24,1)", fill: "forwards" });
+        setTimeout(intro, 420);
+        anim.onfinish = function () { html.classList.remove("is-loading"); pre.style.display = "none"; };
+      }, 420);
     }
   } else if (html.classList.contains("is-entering")) {
     if (store) store.removeItem("lif-nav");
     var cur = $(".curtain");
     var go = function () {
-      var a = cur.animate([{ transform: "translateY(0)" }, { transform: "translateY(-101%)" }], { duration: 850, easing: "cubic-bezier(.76,0,.24,1)", fill: "forwards" });
+      $$(".curtain__inner > *", cur).forEach(function (el, i) {
+        el.animate([{ opacity: 1, transform: "none" }, { opacity: 0, transform: "translateY(-40px)" }], { duration: 500, delay: i * 40, easing: "cubic-bezier(.7,0,.84,0)", fill: "forwards" });
+      });
+      var a = cur.animate(
+        [{ transform: "translateY(0)", borderRadius: "0" }, { transform: "translateY(-101%)", borderRadius: "0 0 50% 50% / 0 0 18% 18%" }],
+        { duration: 900, delay: 180, easing: "cubic-bezier(.76,0,.24,1)", fill: "forwards" });
       setTimeout(intro, 300);
-      a.onfinish = function () { html.classList.remove("is-entering"); cur.getAnimations().forEach(function (x) { x.cancel(); }); };
+      a.onfinish = function () { html.classList.remove("is-entering"); cur.getAnimations({ subtree: true }).forEach(function (x) { x.cancel(); }); };
     };
     (document.fonts ? document.fonts.ready : Promise.resolve()).then(function () { setTimeout(go, 120); });
   } else {
@@ -89,9 +100,13 @@
     if (t) t.innerHTML = titles[file] || "";
     if (store) store.setItem("lif-nav", "1");
     cur.classList.add("is-on");
-    cur.animate([{ transform: "translateY(101%)" }, { transform: "translateY(0)" }], { duration: 700, easing: "cubic-bezier(.76,0,.24,1)", fill: "forwards" });
-    if (t) t.animate([{ opacity: 0, transform: "translateY(30px)" }, { opacity: 1, transform: "none" }], { duration: 600, delay: 250, easing: "cubic-bezier(.16,1,.3,1)", fill: "forwards" });
-    setTimeout(function () { location.href = url.href; }, 760);
+    cur.animate(
+      [{ transform: "translateY(101%)", borderRadius: "50% 50% 0 0 / 18% 18% 0 0" }, { transform: "translateY(0)", borderRadius: "0" }],
+      { duration: 750, easing: "cubic-bezier(.76,0,.24,1)", fill: "forwards" });
+    $$(".curtain__inner > *", cur).forEach(function (el, i) {
+      el.animate([{ opacity: 0, transform: "translateY(40px)" }, { opacity: 1, transform: "none" }], { duration: 650, delay: 260 + i * 70, easing: "cubic-bezier(.16,1,.3,1)", fill: "forwards" });
+    });
+    setTimeout(function () { location.href = url.href; }, 820);
   });
   /* Returning with the back button from bfcache: make sure nothing is covered. */
   window.addEventListener("pageshow", function (e) {
@@ -99,7 +114,7 @@
     html.classList.remove("is-entering", "is-loading");
     var cur = $(".curtain");
     if (cur) { cur.classList.remove("is-on"); cur.getAnimations().forEach(function (x) { x.cancel(); }); }
-    var t = $(".curtain__title"); if (t) t.getAnimations().forEach(function (x) { x.cancel(); });
+    $$(".curtain__inner > *").forEach(function (el) { el.getAnimations().forEach(function (x) { x.cancel(); }); });
   });
 
   /* ---------- Header: hide on scroll down, scroll progress, sticky CTA ---------- */
@@ -175,12 +190,14 @@
     var cursor = $(".cursor"), label = $(".cursor__label");
     var mx = -100, my = -100, cx = -100, cy = -100;
     html.classList.add("has-cursor");
-    window.addEventListener("mousemove", function (e) { mx = e.clientX; my = e.clientY; }, { passive: true });
-    (function loop() {
-      cx += (mx - cx) * 0.2; cy += (my - cy) * 0.2;
+    var raf = 0;
+    /* The follow loop runs only while the cursor is catching up, then sleeps. */
+    var loop = function () {
+      cx += (mx - cx) * 0.22; cy += (my - cy) * 0.22;
       cursor.style.transform = "translate3d(" + cx.toFixed(1) + "px," + cy.toFixed(1) + "px,0)";
-      requestAnimationFrame(loop);
-    })();
+      raf = (Math.abs(mx - cx) + Math.abs(my - cy) > 0.3) ? requestAnimationFrame(loop) : 0;
+    };
+    window.addEventListener("mousemove", function (e) { mx = e.clientX; my = e.clientY; if (!raf) raf = requestAnimationFrame(loop); }, { passive: true });
     document.addEventListener("mouseover", function (e) {
       var t = e.target;
       var lab = t.closest && t.closest("[data-cursor]");

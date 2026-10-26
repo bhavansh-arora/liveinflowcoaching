@@ -34,10 +34,10 @@
     })(document);
   </script>
   <style>
-    html.is-entering, html.is-loading { background: #0b3a3b; }
+    html.is-entering, html.is-loading { background: #082b2c; }
     .curtain { position: fixed; inset: 0; z-index: 790; background: #0b3a3b; transform: translateY(101%); }
     html.is-entering .curtain { transform: none; }
-    .preloader { position: fixed; inset: 0; z-index: 800; background: #f5f0e6; display: none; }
+    .preloader { position: fixed; inset: 0; z-index: 800; background: #082b2c; color: #f5f0e6; display: none; overflow: hidden; }
     html.is-loading .preloader { display: grid; place-items: center; }
   </style>
   <link rel="preload" href="assets/fonts/inter-tight-normal-300-700.woff2" as="font" type="font/woff2" crossorigin>
@@ -69,17 +69,31 @@
   <a class="skip-link" href="#main">Skip to content</a>
 
   <div class="preloader" aria-hidden="true">
-    <div class="preloader__top"><span class="label">Live in Flow Coaching</span><span class="label">Clarity &middot; Confidence &middot; Courage</span></div>
+    <div class="preloader__glow"></div>
+    <div class="preloader__top"><span class="label">Live in Flow Coaching</span><span class="label">Vancouver &middot; Worldwide</span></div>
     <div class="preloader__inner">
-      <div class="preloader__sea">
-        <svg class="preloader__wave" viewBox="0 0 400 40" preserveAspectRatio="none"><path pathLength="1" d="M0 26c33-14 67 14 100 0s67-14 100 0 67 14 100 0 67-14 100 0"/></svg>
-        <span class="preloader__boat">{{> logo-mark}}</span>
-      </div>
-      <p class="preloader__name"><span>Live in</span> <em>Flow</em></p>
+      <span class="preloader__mark">{{> logo-mark}}</span>
+      <p class="preloader__name"><span class="pl-mask"><span>Live in</span></span> <span class="pl-mask"><em>Flow</em></span></p>
+      <p class="preloader__tag"><span class="pl-mask"><span>Career coaching with Maria Angoso</span></span></p>
     </div>
-    <div class="preloader__bottom"><span class="label">Maria Angoso &middot; Career coach</span><span class="label preloader__count"><span data-count>0</span>%</span></div>
+    <div class="preloader__sea"><svg class="pl-waves" viewBox="0 0 1600 200" preserveAspectRatio="none" aria-hidden="true">
+        <path class="pl-wave pl-wave--1" d="M0 70c100-40 200 40 400 0s300-40 400 0 300 40 400 0 300-40 400 0v130H0z"/>
+        <path class="pl-wave pl-wave--2" d="M0 100c100-34 200 34 400 0s300-34 400 0 300 34 400 0 300-34 400 0v100H0z"/>
+        <path class="pl-wave pl-wave--3" d="M0 130c100-26 200 26 400 0s300-26 400 0 300 26 400 0 300-26 400 0v70H0z"/>
+      </svg></div>
+    <div class="preloader__bottom">
+      <p class="preloader__words"><span>Clarity</span><span>Confidence</span><span>Courage</span><span>Flow</span></p>
+      <p class="preloader__count"><span data-count>0</span><sup>%</sup></p>
+    </div>
+    <div class="preloader__bar"><i></i></div>
   </div>
-  <div class="curtain" aria-hidden="true"><p class="curtain__title">{{page.curtain}}</p></div>
+  <div class="curtain" aria-hidden="true">
+    <div class="curtain__inner">
+      <span class="curtain__mark">{{> logo-mark}}</span>
+      <p class="curtain__title">{{page.curtain}}</p>
+      <span class="label curtain__label">Live in Flow Coaching</span>
+    </div>
+  </div>
   <div class="scroll-progress" aria-hidden="true"></div>
   <div class="cursor" aria-hidden="true"><span class="cursor__label"></span></div>
 

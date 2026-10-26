@@ -64,7 +64,7 @@
     var words = splitWords(el);
     gsap.set(words, { yPercent: 110 });
     var inHero = el.closest(".page-hero");
-    var play = function () { gsap.to(words, { yPercent: 0, duration: 1.2, ease: EASE, stagger: 0.05 }); };
+    var play = function () { gsap.to(words, { yPercent: 0, duration: 1.2, ease: EASE, stagger: 0.05, onComplete: function () { el.classList.add("is-split-done"); } }); };
     if (inHero) LIF.whenIntro(function () { setTimeout(play, 120); });
     else ST.create({ trigger: el, start: "top 88%", once: true, onEnter: play });
   });
@@ -76,7 +76,7 @@
     gsap.set([".hero__eyebrow", ".hero__foot", ".hero-card", ".hero__dots"], { autoAlpha: 0, y: 24 });
     LIF.whenIntro(function () {
       var tl = gsap.timeline({ delay: 0.15 });
-      tl.to(heroLines, { yPercent: 0, duration: 1.4, ease: EASE, stagger: 0.12 })
+      tl.to(heroLines, { yPercent: 0, duration: 1.4, ease: EASE, stagger: 0.12, onComplete: function () { $(".hero__title").classList.add("is-in"); } })
         .to(".hero__eyebrow", { autoAlpha: 1, y: 0, duration: 1, ease: EASE }, 0.2)
         .to(".hero__foot", { autoAlpha: 1, y: 0, duration: 1.1, ease: EASE }, 0.55)
         .to([".hero-card", ".hero__dots"], { autoAlpha: 1, y: 0, duration: 1.1, ease: EASE, stagger: 0.1 }, 0.75);
@@ -100,7 +100,7 @@
   });
 
   /* ---------- Image clip reveal + parallax ---------- */
-  $$(".media, .stack-card__media, .trait__img").forEach(function (el) {
+  $$(".media, .stack-card__media, .trait__img, .meet__arch").forEach(function (el) {
     var inHero = el.closest(".page-hero");
     gsap.set(el, { clipPath: "inset(14% 0% 0% 0%)" });
     var play = function () { gsap.to(el, { clipPath: "inset(0% 0% 0% 0%)", duration: 1.4, ease: "expo.inOut", clearProps: "clipPath" }); };
@@ -136,11 +136,11 @@
     setP(0);
     mm.add("(min-width: 900px)", function () {
       genius.classList.add("genius--pinned");
-      var st = ST.create({ trigger: genius.parentElement, start: "top top", end: "+=140%", pin: true, scrub: 0.6, onUpdate: function (self) { setP(self.progress); } });
+      var st = ST.create({ trigger: genius.parentElement, start: "top top", end: "+=90%", pin: true, scrub: true, onUpdate: function (self) { setP(self.progress); } });
       return function () { genius.classList.remove("genius--pinned"); st.kill(); };
     });
     mm.add("(max-width: 899px)", function () {
-      var st = ST.create({ trigger: venn, start: "top 85%", end: "bottom 40%", scrub: 0.6, onUpdate: function (self) { setP(self.progress); } });
+      var st = ST.create({ trigger: venn, start: "top 85%", end: "bottom 40%", scrub: true, onUpdate: function (self) { setP(self.progress); } });
       steps.forEach(function (s) { s.classList.add("is-active"); });
       return function () { st.kill(); };
     });
@@ -154,7 +154,7 @@
       var dist = function () { return Math.max(0, track.scrollWidth - window.innerWidth); };
       var tw = gsap.to(track, {
         x: function () { return -dist(); }, ease: "none",
-        scrollTrigger: { trigger: ".wins", start: "top top", end: function () { return "+=" + dist(); }, pin: true, scrub: 0.6, invalidateOnRefresh: true, anticipatePin: 1 }
+        scrollTrigger: { trigger: ".wins", start: "top top", end: function () { return "+=" + dist(); }, pin: true, scrub: 0.3, invalidateOnRefresh: true, anticipatePin: 1 }
       });
       return function () { hs.classList.remove("is-pinned"); tw.scrollTrigger && tw.scrollTrigger.kill(); tw.kill(); gsap.set(track, { clearProps: "transform" }); };
     });
@@ -166,11 +166,16 @@
     var x = 0, dir = -1, speed = 0.6, half = 0;
     var measure = function () { half = wt.scrollWidth / 2; };
     measure(); window.addEventListener("resize", measure);
-    ST.create({ trigger: ".words", start: "top bottom", end: "bottom top", onUpdate: function (self) { dir = self.direction === 1 ? -1 : 1; speed = Math.min(6, 0.6 + Math.abs(self.getVelocity()) / 400); } });
-    gsap.ticker.add(function () {
+    var onTick = function () {
       x += dir * speed; speed += (0.6 - speed) * 0.05;
       if (half) { if (x <= -half) x += half; if (x > 0) x -= half; }
       wt.style.transform = "translate3d(" + x.toFixed(2) + "px,0,0)";
+    };
+    /* Only animate while the band is on screen. */
+    ST.create({
+      trigger: ".words", start: "top bottom", end: "bottom top",
+      onToggle: function (self) { if (self.isActive) gsap.ticker.add(onTick); else gsap.ticker.remove(onTick); },
+      onUpdate: function (self) { dir = self.direction === 1 ? -1 : 1; speed = Math.min(6, 0.6 + Math.abs(self.getVelocity()) / 400); }
     });
   }
 
@@ -178,9 +183,9 @@
   mm.add("(min-width: 900px)", function () {
     var cards = $$(".stack-card");
     var tws = cards.slice(0, -1).map(function (card, i) {
-      return gsap.to(card, { scale: 0.94 + i * 0.012, filter: "brightness(0.92)", ease: "none", scrollTrigger: { trigger: cards[i + 1], start: "top bottom", end: "top 140px", scrub: true } });
+      return gsap.to(card, { scale: 0.92 + i * 0.02, "--dim": 0.18, ease: "none", scrollTrigger: { trigger: cards[i + 1], start: "top 85%", end: "top 120px", scrub: true } });
     });
-    return function () { tws.forEach(function (t) { t.scrollTrigger && t.scrollTrigger.kill(); t.kill(); }); gsap.set(cards, { clearProps: "transform,filter" }); };
+    return function () { tws.forEach(function (t) { t.scrollTrigger && t.scrollTrigger.kill(); t.kill(); }); gsap.set(cards, { clearProps: "transform,--dim" }); };
   });
 
   /* ---------- Option numbers count in (coaching) ---------- */
