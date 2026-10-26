@@ -40,10 +40,11 @@
     html.is-entering .curtain { transform: none; }
     .preloader { position: fixed; inset: 0; z-index: 800; background: #082b2c; color: #f5f0e6; display: none; overflow: hidden; }
     html.is-loading .preloader { display: grid; place-items: center; }
-    .curtain__sea { position: absolute; left: 0; right: 0; bottom: 0; height: 30vh; overflow: hidden; }
-    .pl-waves { position: absolute; left: 0; bottom: 0; width: 200%; max-width: none; height: 100%; animation: pl-flow 9s linear infinite; animation-delay: var(--wave-t, 0s); will-change: transform; }
+    .curtain__sea { position: absolute; left: 0; right: 0; bottom: 0; height: clamp(110px, 18vh, 30vh); overflow: hidden; }
+    .pl-waves { position: absolute; left: 0; bottom: 0; width: 200%; height: 100%; animation: pl-flow 9s linear infinite; animation-delay: var(--wave-t, 0s); will-change: transform; transform: translate3d(0,0,0); }
+    .pl-waves svg { display: block; width: 100%; height: 100%; max-width: none; }
     .pl-wave--1 { fill: rgba(13, 103, 102, 0.55); } .pl-wave--2 { fill: rgba(14, 75, 76, 0.85); } .pl-wave--3 { fill: #0b3a3b; }
-    @keyframes pl-flow { to { transform: translateX(-50%); } }
+    @keyframes pl-flow { from { transform: translate3d(0,0,0); } to { transform: translate3d(-50%,0,0); } }
   </style>
   <link rel="preload" href="assets/fonts/inter-tight-normal-300-700.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/instrument-serif-italic-400.woff2" as="font" type="font/woff2" crossorigin>
@@ -82,11 +83,11 @@
       <p class="preloader__name"><span class="pl-mask"><span>Live in</span></span> <span class="pl-mask"><em>Flow</em></span></p>
       <p class="preloader__tag"><span class="pl-mask"><span>Career coaching with Maria Angoso</span></span></p>
     </div>
-    <div class="preloader__sea"><svg class="pl-waves" viewBox="0 0 1600 200" preserveAspectRatio="none" aria-hidden="true">
+    <div class="preloader__sea"><div class="pl-waves" aria-hidden="true"><svg viewBox="0 0 1600 200" preserveAspectRatio="none">
         <path class="pl-wave pl-wave--1" d="M0 70c100-40 200 40 400 0s300-40 400 0 300 40 400 0 300-40 400 0v130H0z"/>
         <path class="pl-wave pl-wave--2" d="M0 100c100-34 200 34 400 0s300-34 400 0 300 34 400 0 300-34 400 0v100H0z"/>
         <path class="pl-wave pl-wave--3" d="M0 130c100-26 200 26 400 0s300-26 400 0 300 26 400 0 300-26 400 0v70H0z"/>
-      </svg></div>
+      </svg></div></div>
     <div class="preloader__bottom">
       <p class="preloader__words"><span>Clarity</span><span>Confidence</span><span>Courage</span><span>Flow</span></p>
       <p class="preloader__count"><span data-count>0</span><sup>%</sup></p>
@@ -100,11 +101,11 @@
       <p class="curtain__brand">Live in <em>Flow</em></p>
       <p class="curtain__page"><span class="curtain__dot"></span><span class="curtain__title">Client <em>wins</em></span></p>
     </div>
-    <div class="curtain__sea"><svg class="pl-waves" viewBox="0 0 1600 200" preserveAspectRatio="none" aria-hidden="true">
+    <div class="curtain__sea"><div class="pl-waves" aria-hidden="true"><svg viewBox="0 0 1600 200" preserveAspectRatio="none">
       <path class="pl-wave pl-wave--1" d="M0 70c100-40 200 40 400 0s300-40 400 0 300 40 400 0 300-40 400 0v130H0z"/>
       <path class="pl-wave pl-wave--2" d="M0 100c100-34 200 34 400 0s300-34 400 0 300 34 400 0 300-34 400 0v100H0z"/>
       <path class="pl-wave pl-wave--3" d="M0 130c100-26 200 26 400 0s300-26 400 0 300 26 400 0 300-26 400 0v70H0z"/>
-    </svg></div>
+    </svg></div></div>
   </div>
   <div class="scroll-progress" aria-hidden="true"></div>
   <div class="cursor" aria-hidden="true"><span class="cursor__label"></span></div>

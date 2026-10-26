@@ -134,7 +134,7 @@
 
   /* ---------- Header: hide on scroll down, scroll progress, sticky CTA ---------- */
   var header = $(".site-header"), sticky = $(".sticky-cta"), bar = $(".scroll-progress"), footer = $(".site-footer");
-  var lastY = window.scrollY, ticking = false;
+  var lastY = window.scrollY, ticking = false, stickyUp = false;
   function onScroll() {
     var y = window.scrollY, max = document.documentElement.scrollHeight - window.innerHeight;
     if (header) {
@@ -143,8 +143,10 @@
     }
     if (bar) bar.style.setProperty("--sp", max > 0 ? (y / max).toFixed(4) : 0);
     if (sticky) {
+      /* Shows when you scroll back up, so it never sits on top of what you're reading. */
+      if (y > lastY + 4) stickyUp = false; else if (y < lastY - 4) stickyUp = true;
       var nearFooter = footer && footer.getBoundingClientRect().top < window.innerHeight;
-      sticky.classList.toggle("is-visible", y > 640 && !nearFooter);
+      sticky.classList.toggle("is-visible", stickyUp && y > 640 && !nearFooter);
     }
     lastY = y; ticking = false;
   }
@@ -245,6 +247,50 @@
     });
   });
 
+
+  /* ---------- Sideways rows on phones: intro above the row, plus a swipe hint ---------- */
+  var mqPhone = window.matchMedia("(max-width: 899px)");
+  $$(".hscroll").forEach(function (hs) {
+    var track = $(".hscroll__track", hs), intro = $(".hscroll__intro", hs);
+    if (!track) return;
+    var place = function () {
+      if (!intro) return;
+      if (mqPhone.matches) { if (intro.parentNode !== hs.parentNode) { hs.parentNode.insertBefore(intro, hs); intro.classList.add("is-out"); } }
+      else if (intro.parentNode !== track) { track.insertBefore(intro, track.firstChild); intro.classList.remove("is-out"); }
+    };
+    place();
+    if (mqPhone.addEventListener) mqPhone.addEventListener("change", place);
+    var items = function () { return $$(":scope > *:not(.hscroll__intro)", track); };
+    var total = items().length, word = hs.getAttribute("data-hint") || "Swipe";
+    var hint = document.createElement("div");
+    hint.className = "hscroll__hint"; hint.setAttribute("aria-hidden", "true");
+    hint.innerHTML = '<span class="hscroll__hint-go">' + word + ' <svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 9h12M10 4l5 5-5 5"/></svg></span><span class="hscroll__hint-bar"><i></i></span><span class="hscroll__hint-n">01 / ' + (total < 10 ? "0" : "") + total + "</span>";
+    hs.parentNode.insertBefore(hint, hs.nextSibling);
+    var n = $(".hscroll__hint-n", hint);
+    var update = function () {
+      var max = hs.scrollWidth - hs.clientWidth;
+      var p = max > 0 ? hs.scrollLeft / max : 0;
+      hint.style.setProperty("--hp", Math.max(1 / total, p).toFixed(3));
+      var idx = Math.min(total, Math.round(p * (total - 1)) + 1);
+      n.textContent = (idx < 10 ? "0" : "") + idx + " / " + (total < 10 ? "0" : "") + total;
+    };
+    hs.addEventListener("scroll", update, { passive: true });
+    update();
+    /* A small nudge the first time the row comes into view shows it moves sideways. */
+    if (!reduce && "IntersectionObserver" in window) {
+      var io = new IntersectionObserver(function (es) {
+        if (!es[0].isIntersecting || !mqPhone.matches) return;
+        io.disconnect();
+        if (hs.scrollLeft > 4) return;
+        setTimeout(function () {
+          hs.style.scrollSnapType = "none";
+          hs.scrollTo({ left: 70, behavior: "smooth" });
+          setTimeout(function () { hs.scrollTo({ left: 0, behavior: "smooth" }); setTimeout(function () { hs.style.scrollSnapType = ""; }, 600); }, 650);
+        }, 500);
+      }, { threshold: 0.6 });
+      io.observe(hs);
+    }
+  });
 
   /* ---------- Workshop topics: a photo preview follows the cursor ---------- */
   $$("[data-topics]").forEach(function (list) {
