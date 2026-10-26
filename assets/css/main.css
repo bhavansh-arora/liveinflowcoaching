@@ -1124,7 +1124,8 @@ textarea.input { resize: vertical; min-height: 140px; line-height: 1.5; }
 .preloader__tag { font-family: var(--mono); font-size: 0.74rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(245, 240, 230, 0.66); }
 .preloader__tag .pl-mask > * { animation-delay: 0.62s; }
 .preloader__sea { position: absolute; left: 0; right: 0; bottom: 0; height: 38vh; z-index: 1; overflow: hidden; transform: translateY(calc((1 - var(--p)) * 70%)); }
-.pl-waves { position: absolute; left: 0; bottom: 0; width: 200%; max-width: none; height: 100%; animation: pl-flow 9s linear infinite; }
+.pl-waves { position: absolute; left: 0; bottom: 0; width: 200%; max-width: none; height: 100%; animation: pl-flow 9s linear infinite; animation-delay: var(--wave-t, 0s); will-change: transform; backface-visibility: hidden; }
+/* The waves keep the same phase from page to page, so the curtain never looks frozen or jumps. */
 .pl-wave--1 { fill: rgba(13, 103, 102, 0.55); }
 .pl-wave--2 { fill: rgba(14, 75, 76, 0.85); }
 .pl-wave--3 { fill: #0b3a3b; }
