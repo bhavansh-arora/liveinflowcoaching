@@ -78,6 +78,19 @@
     requestAnimationFrame(intro);
   }
 
+  /* Fetch internal pages early (on hover or touch) so the next page is ready the moment the curtain closes. */
+  var fetched = {};
+  function prefetch(href) {
+    if (fetched[href]) return; fetched[href] = 1;
+    var l = document.createElement("link"); l.rel = "prefetch"; l.href = href; document.head.appendChild(l);
+  }
+  ["mouseover", "touchstart", "focusin"].forEach(function (ev) {
+    document.addEventListener(ev, function (e) {
+      var a = e.target.closest && e.target.closest("a[href$='.html'], a[href*='.html#']");
+      if (a && a.origin === location.origin && !a.target) prefetch(a.href.split("#")[0]);
+    }, { passive: true });
+  });
+
   /* ---------- Page curtain on internal links ---------- */
   var titles = {
     "index.html": "<em>Home</em>", "about.html": "About <em>Maria</em>", "coaching.html": "1:1 <em>Coaching</em>",
@@ -104,9 +117,11 @@
       [{ transform: "translateY(101%)", borderRadius: "50% 50% 0 0 / 18% 18% 0 0" }, { transform: "translateY(0)", borderRadius: "0" }],
       { duration: 750, easing: "cubic-bezier(.76,0,.24,1)", fill: "forwards" });
     $$(".curtain__inner > *", cur).forEach(function (el, i) {
-      el.animate([{ opacity: 0, transform: "translateY(40px)" }, { opacity: 1, transform: "none" }], { duration: 650, delay: 260 + i * 70, easing: "cubic-bezier(.16,1,.3,1)", fill: "forwards" });
+      el.animate([{ opacity: 0, transform: "translateY(40px)" }, { opacity: 1, transform: "none" }], { duration: 520, delay: 200 + i * 60, easing: "cubic-bezier(.16,1,.3,1)", fill: "forwards" });
     });
-    setTimeout(function () { location.href = url.href; }, 820);
+    prefetch(url.href);
+    /* Navigate only once the curtain and its text have fully settled, so nothing jumps when the next page takes over. */
+    setTimeout(function () { location.href = url.href; }, 900);
   });
   /* Returning with the back button from bfcache: make sure nothing is covered. */
   window.addEventListener("pageshow", function (e) {
