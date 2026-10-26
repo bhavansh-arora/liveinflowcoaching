@@ -119,7 +119,7 @@
   });
 
   /* ---------- Everything else rises in too, so no text or image just sits there ---------- */
-  var SKIP = ".reveal, [data-split], .option__num, .hero, .phero, .chapter, .page-hero, .menu, .marquee, .words, [data-statement], .genius, .feels, .hscroll, .footer-mark, .stack-card, .footer-top, .meet__stats";
+  var SKIP = ".reveal, [data-split], .ribbon, .qslide__stage, .programs__media, .option__num, .hero, .phero, .chapter, .page-hero, .menu, .marquee, .words, [data-statement], .genius, .feels, .hscroll, .footer-mark, .stack-card, .footer-top, .meet__stats";
   var autos = [];
   $$("main h2, main h3, main .lede, main .body, main p, main .btn, main .link, main li, main figure, main dl, main form, main details, .site-footer .footer-brand, .site-footer .footer-col").forEach(function (el) {
     if (el.closest(SKIP) || el.closest(".is-auto")) return;
@@ -131,7 +131,7 @@
   }
   /* Images settle from a gentle zoom as they scroll in. */
   $$("main img, .site-footer img").forEach(function (img) {
-    if (img.closest(".hero, .phero, .inline-img, .marquee, .hero-card, .feature__mock, .tile__badge, .pcc-badge, .cred__badge, .badge-spin")) return;
+    if (img.closest(".hero, .phero, .ribbon, .programs__img, .topics__float, .inline-img, .marquee, .hero-card, .feature__mock, .tile__badge, .pcc-badge, .cred__badge, .badge-spin")) return;
     var box = img.parentElement, clipped = false;
     for (var k = 0; k < 3 && box; k++, box = box.parentElement) { var o = getComputedStyle(box).overflow; if (o === "hidden" || o === "clip") { clipped = true; break; } }
     if (!clipped) return;
@@ -234,6 +234,31 @@
     });
     return function () { tws.forEach(function (t) { t.scrollTrigger && t.scrollTrigger.kill(); t.kill(); }); gsap.set(cards, { clearProps: "transform,--dim" }); };
   });
+
+  /* ---------- Photo ribbon drifts sideways with the scroll ---------- */
+  $$("[data-ribbon]").forEach(function (tr) {
+    gsap.fromTo(tr, { x: function () { return Math.min(0, window.innerWidth - tr.scrollWidth) * 0.15; } }, {
+      x: function () { return Math.min(0, window.innerWidth - tr.scrollWidth); }, ease: "none",
+      scrollTrigger: { trigger: tr.parentElement, start: "top bottom", end: "bottom top", scrub: 0.4, invalidateOnRefresh: true }
+    });
+  });
+
+  /* ---------- Coaching programmes: the sticky photo follows the option you are reading ---------- */
+  var progs = $$(".program"), pImgs = $$(".programs__img"), pNames = $$(".programs__name span"), pBars = $$(".programs__bars i"), pNum = $(".programs__count b");
+  if (progs.length && pImgs.length) {
+    var cur = 0;
+    var setProg = function (i) {
+      if (i === cur) return;
+      pImgs.forEach(function (im, k) { im.classList.toggle("was-active", k === cur); im.classList.toggle("is-active", k === i); });
+      pNames.forEach(function (n, k) { n.classList.toggle("is-active", k === i); });
+      pBars.forEach(function (b, k) { b.classList.toggle("is-active", k === i); b.classList.toggle("is-done", k < i); });
+      if (pNum) gsap.fromTo(pNum, { yPercent: i > cur ? 60 : -60, autoAlpha: 0 }, { yPercent: 0, autoAlpha: 1, duration: 0.8, ease: EASE, onStart: function () { pNum.textContent = "0" + (i + 1); } });
+      cur = i;
+    };
+    progs.forEach(function (pr, i) {
+      ST.create({ trigger: pr, start: "top 60%", end: "bottom 60%", onEnter: function () { setProg(i); }, onEnterBack: function () { setProg(i); } });
+    });
+  }
 
   /* ---------- Option numbers count in (coaching) ---------- */
   $$(".option__num").forEach(function (el) {
